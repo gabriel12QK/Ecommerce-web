@@ -1,0 +1,175 @@
+<div class="container  h-90 w-70" style="margin: auto ;">
+    <div class="row d-flex justify-content-center align-items-center h-60 w-50" style="margin: auto ; margin-top: 50px;">
+        <div class="col-10 col-md-12 col-lg-12 col-xl-12" style="margin: auto;">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <form [formGroup]="_form">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <div class="row">
+                                <h2 class="fw-bold mb-2 text-uppercase">Registro Producto</h2>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md" formControlName="nombre" />
+                                        <label class="form-label" for="typeEmailX">Nombre</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('nombre')?.touched && _form.get('nombre')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" class="form-control form-control-md" formControlName="precio" />
+                                        <label class="form-label" for="typePasswordX">Precio</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('precio')?.touched && _form.get('precio')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md" formControlName="peso" />
+                                        <label class="form-label" for="typeEmailX">peso</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('peso')?.touched && _form.get('peso')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md" formControlName="stock" />
+                                        <label class="form-label" for="typeEmailX">Stock</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('stock')?.touched && _form.get('stock')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md" formControlName="imagen" />
+                                        <label class="form-label" for="typeEmailX">Imagen</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md" formControlName="imagen" />
+                                        <label class="form-label" for="typeEmailX">Imagen</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                  <!--               <div class="col-6">
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" class="form-control form-control-md" formControlName="peso" />
+                                        <label class="form-label" for="typePasswordX">peso</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('peso')?.touched && _form.get('peso')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf=" _form.get('CI')?.errors?.['pattern'] ">
+                                            solo se permiten numeros
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf=" _form.get('CI')?.errors?.['minlength'] ">
+                                            el minimo son 10 caracteres
+                                         </div> 
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" class="form-control form-control-md" formControlName="stock" />
+                                        <label class="form-label" for="typePasswordX">stock</label>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('stock')?.touched && _form.get('stock')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('email')?.touched && _form.get('email')?.errors?.['email'] ">
+                                            ingrese un email valido
+                                        </div> 
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial1" formControlName="parcial1" />
+                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial1')?.touched && _form.get('parcial1')?.errors?.['required'] ">
+                                                    CAMPO REQUERIDO
+                                                </div>
+                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial1')?.errors?.['pattern'] ">
+                                                    solo se permiten numeros
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial2" formControlName="parcial2" />
+                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial2')?.touched && _form.get('parcial2')?.errors?.['required'] ">
+                                                    CAMPO REQUERIDO
+                                                </div>
+                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial2')?.errors?.['pattern'] ">
+                                                    solo se permiten numeros
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial3" formControlName="parcial3" />
+                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial3')?.touched && _form.get('parcial3')?.errors?.['required'] ">
+                                                    CAMPO REQUERIDO
+                                                </div>
+                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial3')?.errors?.['pattern'] ">
+                                                    solo se permiten numeros
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial4" formControlName="parcial4" />
+                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial4')?.touched && _form.get('parcial4')?.errors?.['required'] ">
+                                                    CAMPO REQUERIDO
+                                                </div>
+                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial4')?.errors?.['pattern'] ">
+                                                    solo se permiten numeros
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="col-6" *ngIf="valid">
+                                        <h6>Promedio:</h6>
+                                    </div>
+                                    <div class="col-6" *ngIf="valid">
+                                        <h6>{{prom}}</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="calcular()">Calcular</button>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="store(_form.value)">Guardar</button>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="cambio()">Notas</button>
+                                    </div> -->
+
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+            </div>
+        </div>
+    </div>
