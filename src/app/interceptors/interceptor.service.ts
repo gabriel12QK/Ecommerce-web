@@ -23,11 +23,12 @@ export class InterceptorService implements HttpInterceptor {
 
   }
 
-  //no borrar, puede servir en un futuro
-  /* manejarError(error: HttpErrorResponse){
-    console.log('Sucedió un error');
-    console.log('Registrado en el log file');
-    console.warn(error);
-    return throwError('Error personalizado')
-  } */
 }
+
+//no borrar, puede servir en un futuro
+/* manejarError(error: HttpErrorResponse){
+  console.log('Sucedió un error');
+  console.log('Registrado en el log file');
+  console.warn(error);
+  return throwError('Error personalizado')
+} */
