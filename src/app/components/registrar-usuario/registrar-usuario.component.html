@@ -1,0 +1,117 @@
+<div class="container  h-90 w-70" style="margin: auto ;">
+    <div class="row d-flex justify-content-center align-items-center h-60 w-50"
+        style="margin: auto ; margin-top: 50px;">
+        <div class="col-10 col-md-12 col-lg-12 col-xl-12" style="margin: auto;">
+            <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <form [formGroup]="_form">
+                    <div class="card-body p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <div class="row">
+                                <h2 class="fw-bold mb-2 text-uppercase">Registro de Usuario</h2>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="nombre" />
+                                        <label class="form-label" for="typeEmailX">Nombres</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('nombre')?.touched && _form.get('nombre')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="apellido" />
+                                        <label class="form-label" for="typePasswordX">Apellidos</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('apellido')?.touched && _form.get('apellido')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="email" />
+                                        <label class="form-label" for="typeEmailX">E-mail</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('email')?.touched && _form.get('email')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="password" />
+                                        <label class="form-label" for="typeEmailX">Contraseña</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('password')?.touched && _form.get('password')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="cedula" />
+                                        <label class="form-label" for="typeEmailX">Cédula</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('cedula')?.touched && _form.get('cedula')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="direccion" />
+                                        <label class="form-label" for="typeEmailX">Dirección</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('direccion')?.touched && _form.get('direccion')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="imagen" />
+                                        <label class="form-label" for="typeEmailX">Imagen</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4 ">
+                                        <input type="text" class="form-control form-control-md"
+                                            formControlName="telefono" />
+                                        <label class="form-label" for="typeEmailX">Teléfono</label>
+                                        <div class="alert alert-danger" role="alert"
+                                            *ngIf="_form.get('telefono')?.touched && _form.get('telefono')?.errors?.['required'] ">
+                                            CAMPO REQUERIDO
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
