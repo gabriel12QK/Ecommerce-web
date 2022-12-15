@@ -9,6 +9,7 @@
                             <div class="row">
                                 <h2 class="fw-bold mb-2 text-uppercase">Registro Producto</h2>
 
+
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="nombre" />
@@ -17,8 +18,9 @@
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
-
                                 </div>
+
+
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" class="form-control form-control-md" formControlName="precio" />
@@ -28,6 +30,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="peso" />
@@ -36,8 +40,8 @@
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
-
                                 </div>
+
 
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
@@ -47,8 +51,8 @@
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
-
                                 </div>
+
 
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
@@ -58,118 +62,47 @@
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
-
                                 </div>
+
 
                                 <div class="col-6">
-                                    <div class="form-outline form-white mb-4 ">
-                                        <input type="text" class="form-control form-control-md" formControlName="imagen" />
-                                        <label class="form-label" for="typeEmailX">Imagen</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
-                                            CAMPO REQUERIDO
-                                        </div>
-                                    </div>
-
+                                    <div class="form-outline form-white mb-4"  >
+                        
+                                      <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
+                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                      </select>
+                                      <label class="form-label" for="typeEmailX">Id_Categoria</label>
+                                   </div>
                                 </div>
 
 
-
-                  <!--               <div class="col-6">
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="text" class="form-control form-control-md" formControlName="peso" />
-                                        <label class="form-label" for="typePasswordX">peso</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('peso')?.touched && _form.get('peso')?.errors?.['required'] ">
-                                            CAMPO REQUERIDO
-                                        </div>
-                                        <div class="alert alert-danger" role="alert" *ngIf=" _form.get('CI')?.errors?.['pattern'] ">
-                                            solo se permiten numeros
-                                        </div>
-                                        <div class="alert alert-danger" role="alert" *ngIf=" _form.get('CI')?.errors?.['minlength'] ">
-                                            el minimo son 10 caracteres
-                                         </div> 
-                                    </div>
-                                </div>
                                 <div class="col-6">
-                                    <div class="form-outline form-white mb-4">
-                                        <input type="text" class="form-control form-control-md" formControlName="stock" />
-                                        <label class="form-label" for="typePasswordX">stock</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('stock')?.touched && _form.get('stock')?.errors?.['required'] ">
-                                            CAMPO REQUERIDO
-                                        </div>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('email')?.touched && _form.get('email')?.errors?.['email'] ">
-                                            ingrese un email valido
-                                        </div> 
-                                    </div>
+                                    <div class="form-outline form-white mb-4"  >
+                        
+                                      <select class="form-select" aria-label="Default select example" formControlName="id_marca">
+                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                      </select>
+                                      <label class="form-label" for="typeEmailX">Id_Marca</label>
+                                   </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-6">
 
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial1" formControlName="parcial1" />
-                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial1')?.touched && _form.get('parcial1')?.errors?.['required'] ">
-                                                    CAMPO REQUERIDO
-                                                </div>
-                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial1')?.errors?.['pattern'] ">
-                                                    solo se permiten numeros
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial2" formControlName="parcial2" />
-                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial2')?.touched && _form.get('parcial2')?.errors?.['required'] ">
-                                                    CAMPO REQUERIDO
-                                                </div>
-                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial2')?.errors?.['pattern'] ">
-                                                    solo se permiten numeros
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial3" formControlName="parcial3" />
-                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial3')?.touched && _form.get('parcial3')?.errors?.['required'] ">
-                                                    CAMPO REQUERIDO
-                                                </div>
-                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial3')?.errors?.['pattern'] ">
-                                                    solo se permiten numeros
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <input type="text" class="form-control form-control-md" style="margin:5px" placeholder="parcial4" formControlName="parcial4" />
-                                                <div class="alert alert-danger" role="alert" *ngIf="_form.get('parcial4')?.touched && _form.get('parcial4')?.errors?.['required'] ">
-                                                    CAMPO REQUERIDO
-                                                </div>
-                                                <div class="alert alert-danger" role="alert" *ngIf=" _form.get('parcial4')?.errors?.['pattern'] ">
-                                                    solo se permiten numeros
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <div class="col-6" *ngIf="valid">
-                                        <h6>Promedio:</h6>
-                                    </div>
-                                    <div class="col-6" *ngIf="valid">
-                                        <h6>{{prom}}</h6>
-                                    </div>
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="calcular()">Calcular</button>
-                                    </div>
+                                <div class="col-6">
+                                    <div class="form-outline form-white mb-4"  >
+                        
+                                      <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
+                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                      </select>
+                                      <label class="form-label" for="typeEmailX">Id_Tipo_Peso</label>
+                                   </div>
+                                </div>
 
-                                    <div class="col-6">
-                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="store(_form.value)">Guardar</button>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-outline-light btn-md px-5" style="margin-top: 20px;" type="submit" (click)="cambio()">Notas</button>
-                                    </div> -->
 
-                                </div> 
-                            </div>
+                            </div> 
                         </div>
-                    </form>
                     </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
