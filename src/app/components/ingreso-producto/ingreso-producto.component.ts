@@ -23,9 +23,11 @@ export class IngresoProductoComponent implements OnInit {
   public form !: FormGroup
   
 
-    constructor(private api:ProductoService, 
+    constructor(
+      private api:ProductoService, 
       private router:Router,
-      private _formB:FormBuilder) {
+      private _formB:FormBuilder
+      ) {
 
     }
 
@@ -51,6 +53,7 @@ export class IngresoProductoComponent implements OnInit {
     };
     this.file = (event.target).files[0];
   }
+
 store(_form:any)
 {
  
@@ -58,15 +61,11 @@ store(_form:any)
 //   next:(res)=>(console.log("hola")),
 // })
     if (this.file) {
-      console.log(this.file.name);
-      debugger
     this.form.controls['imagen'].setValue(this.file.name);
 
   }
   if(this.form.valid)
   {
-    console.log("hola");
-    debugger
    this.api.Registrarproducto(_form).subscribe({
     next:(res)=>(console.log(res)),
   })
