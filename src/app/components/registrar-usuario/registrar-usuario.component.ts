@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router'
 
 
+
 @Component({
   selector: 'app-registrar-usuario',
   templateUrl: './registrar-usuario.component.html',
@@ -19,6 +20,7 @@ export class RegistrarUsuarioComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     this._form=this._formB.group({
       nombre: ['',[Validators.required]],
       apellido:['',[Validators.required]],

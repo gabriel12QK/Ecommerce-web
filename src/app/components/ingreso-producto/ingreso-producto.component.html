@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center align-items-center h-60 w-50" style="margin: auto ; margin-top: 50px;">
         <div class="col-10 col-md-12 col-lg-12 col-xl-12" style="margin: auto;">
             <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                <form [formGroup]="_form">
+                <form [formGroup]="form">
                     <div class="card-body p-5 text-center">
 
                         <div class="mb-md-5 mt-md-4 pb-5">
@@ -18,7 +18,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="nombre" />
                                         <label class="form-label" for="typeEmailX">Nombre</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('nombre')?.touched && _form.get('nombre')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -29,7 +29,7 @@
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" class="form-control form-control-md" formControlName="precio" />
                                         <label class="form-label" for="typePasswordX">Precio</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('precio')?.touched && _form.get('precio')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('precio')?.touched && form.get('precio')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="peso" />
                                         <label class="form-label" for="typeEmailX">peso</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('peso')?.touched && _form.get('peso')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('peso')?.touched && form.get('peso')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="stock" />
                                         <label class="form-label" for="typeEmailX">Stock</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('stock')?.touched && _form.get('stock')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('stock')?.touched && form.get('stock')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@
 
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
-                                        <input type="text" class="form-control form-control-md" formControlName="imagen" />
+                                        <input type="file" (change)="getFile($event)" class="form-control form-control-md"  />
                                         <label class="form-label" for="typeEmailX">Imagen</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('imagen')?.touched && form.get('imagen')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </form>
-                <button class="btn btn-outline-light btn-lg px-5" type="registrar" (click)="store(_form.value)">registro</button>
+                <button class="btn btn-outline-light btn-lg px-5"  (click)="store(form.value)">registro</button>
             </div>
         </div>
     </div>

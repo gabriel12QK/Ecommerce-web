@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { Router } from '@angular/router'
-
+import { environment } from 'src/environments/environment';
+import { ProductoService } from 'src/app/servicios/producto.service';
+import { MarcaService } from 'src/app/servicios/marca.service';
+import { CategoriaService } from 'src/app/servicios/categoria.service';
+import { TipoPesoService } from 'src/app/servicios/tipo-peso.service';
+import { nextTick } from 'process';
 
 @Component({
   selector: 'app-ingreso-producto',
@@ -10,65 +15,98 @@ import { Router } from '@angular/router'
 })
 export class IngresoProductoComponent implements OnInit {
 
+  button:boolean=true;
+  tipo:any = [];
+  animals:any = [];
+  file: File | any;
+  fileSelect: any;
+  public form !: FormGroup
   
-  public _form !: FormGroup
 
-  constructor(
+    constructor(private api:ProductoService, 
+      private router:Router,
+      private _formB:FormBuilder) {
 
-    private _formB:FormBuilder,
-    private router:Router,
-   
-    ) { }
+    }
 
   ngOnInit(): void {
-    this._form=this._formB.group({
+    this.form=this._formB.group({
       nombre: ['',[Validators.required]],
       precio:['',[Validators.required]],
       peso:['',[Validators.required]],
       stock:['',[Validators.required]],
       imagen:['',[Validators.required]],
-      id_categoria:['',[Validators.required]],
-      id_marca:['',[Validators.required]],
-      id_tipo_peso:['',[Validators.required]],
+      id_categoria:['',],
+      id_marca:['',],
+      id_tipo_peso:['',],
     })
   }
 
+  getFile(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.fileSelect = reader.result;
+    };
+    this.file = (event.target).files[0];
+  }
 store(_form:any)
 {
-   if (this._form.valid) {
-    console.log("formulario", _form);
-    
-   } else {
-   
-   }
-  
-   
-  }
-  
-  /* succes(){
-      swal.fire({
-        position: 'top-end',
-        icon: 'success',
-        title: 'Registrado con exito',
-        showConfirmButton: false,
-         timer: 1500
-      }
-      )
+ 
+//   this.api.Registrarproducto(_form).subscribe({
+//   next:(res)=>(console.log("hola")),
+// })
+    if (this.file) {
+      console.log(this.file.name);
+      debugger
+    this.form.controls['imagen'].setValue(this.file.name);
 
+  }
+  if(this.form.valid)
+  {
+    console.log("hola");
+    debugger
+   this.api.Registrarproducto(_form).subscribe({
+    next:(res)=>(console.log(res)),
+  })
   } 
-  error(){
-    swal.fire({
-      position: 'top-end',
-      icon: 'error',
-      title: 'Asegurese de llenar todos los datos',
-      showConfirmButton: false,
-       timer: 1500
-    }
-    )
+  else 
+  {
+   this.form.markAllAsTouched();
+   }
+}
+   
+
+
+  editar(_id:any){
+    localStorage.setItem("id",_id);
+    this.button=false
+   this.api.Editarproducto(_id).subscribe(data=>{ 
+      let t:any=data;
+      this.form.setValue({
+      'nombre':t.nombre,
+      'precio':t.precio,
+      'peso':t.peso,
+      'stock':t.stock,
+      'id_categoria':1,
+      'id_marca':1,
+      'id_tipo_peso':1,
+      'imagen':t.imagen
+      });
+      (console.log(data))
+    });
   }
 
-  cambio(){
-    this.router.navigate(['notas'])
-  } */
+  borrar(_form:any){
+    let _id=localStorage.getItem("id")
+    this.api.Borrarproducto(_form,_id).subscribe(data=>(console.log(data)));
+  }
+
+ eliminar(_id:any){
+    this.api.Eliminarproducto(_id).subscribe(data=>(console.log(data)));
+  }
+
+
   
 }
