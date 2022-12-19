@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PageComponent } from './components/page.component';
 import { CardComponent } from './plantilla/card/card.component';
 import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
+import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
     HomeComponent,
     PageComponent,
     CardComponent,
-    CardbodyComponent
+    CardbodyComponent,
+    VerPedidosComponent
   ],
   imports: [
     BrowserModule,
