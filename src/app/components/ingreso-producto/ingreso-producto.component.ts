@@ -16,17 +16,22 @@ import { nextTick } from 'process';
 export class IngresoProductoComponent implements OnInit {
 
   button:boolean=true;
-  tipo:any = [];
-  animals:any = [];
+  tipopeso:any = [];
+  producto:any = [];
+  categoria:any = [];
+  marca:any = [];
   file: File | any;
   fileSelect: any;
   public form !: FormGroup
   
 
-    constructor(private api:ProductoService, 
+    constructor(
+      private apiProducto:ProductoService, 
+      private apiCategoria:CategoriaService,
+      private apiMarca:MarcaService,
+      private apiTipoPeso:TipoPesoService,
       private router:Router,
       private _formB:FormBuilder) {
-
     }
 
   ngOnInit(): void {
@@ -39,7 +44,19 @@ export class IngresoProductoComponent implements OnInit {
       id_categoria:['',],
       id_marca:['',],
       id_tipo_peso:['',],
-    })
+    });
+
+  this.apiCategoria.getCategoria().subscribe({
+    next:(res)=>(this.categoria=res),
+  })
+
+  this.apiMarca.getMarca().subscribe({
+    next:(res)=>(this.marca=res),
+  })
+
+  this.apiTipoPeso.getTipoPeso().subscribe({
+    next:(res)=>(this.tipopeso=res),
+  })
   }
 
   getFile(event: any) {
@@ -51,23 +68,21 @@ export class IngresoProductoComponent implements OnInit {
     };
     this.file = (event.target).files[0];
   }
+
 store(_form:any)
 {
- 
-//   this.api.Registrarproducto(_form).subscribe({
-//   next:(res)=>(console.log("hola")),
-// })
+
     if (this.file) {
       console.log(this.file.name);
-      debugger
+   
     this.form.controls['imagen'].setValue(this.file.name);
 
   }
   if(this.form.valid)
   {
     console.log("hola");
-    debugger
-   this.api.Registrarproducto(_form).subscribe({
+  
+   this.apiProducto.storeProducto(_form).subscribe({
     next:(res)=>(console.log(res)),
   })
   } 
@@ -79,10 +94,11 @@ store(_form:any)
    
 
 
-  editar(_id:any){
+ /*  update(_id:any, _form:any){
+  
     localStorage.setItem("id",_id);
     this.button=false
-   this.api.Editarproducto(_id).subscribe(data=>{ 
+    this.api.updateProducto(_form,_id).subscribe(data=>{ 
       let t:any=data;
       this.form.setValue({
       'nombre':t.nombre,
@@ -95,18 +111,15 @@ store(_form:any)
       'imagen':t.imagen
       });
       (console.log(data))
+      debugger
     });
-  }
+  } */
 
-  borrar(_form:any){
-    let _id=localStorage.getItem("id")
-    this.api.Borrarproducto(_form,_id).subscribe(data=>(console.log(data)));
-  }
-
- eliminar(_id:any){
-    this.api.Eliminarproducto(_id).subscribe(data=>(console.log(data)));
+  destroy(id:any){
+/*     let _id=localStorage.getItem("id") */
+    this.apiProducto.destroyProducto(id).subscribe(data=>(console.log(data)));
   }
 
 
-  
+
 }
