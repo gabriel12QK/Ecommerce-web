@@ -104,6 +104,53 @@
                         </div>
                     </div>
                 </form>
+
+                <button class="btn btn-outline-light btn-lg px-5"  (click)="registrar(_form.value)">registro</button>
+                <!-- <table class="table-primary m-5">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Peso</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">Imagen</th>
+                            <th scope="col">ID_Categoria</th>
+                            <th scope="col">Id_Marca</th>
+                            <th scope="col">id_tipo_peso</th>
+                            <th scope="col">Acciones</th>
+            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of animals">
+                            <td>{{item.id}}</td>
+                            <td>{{item.nombre}}</td>
+                            <td>{{item.precio}}</td>
+                            <td>{{item.peso}}</td>
+                            <td>{{item.stock}}</td>
+                            <td>{{item.nombre}}</td>
+                            <td>
+                                <div *ngFor="let e of tipo"><b *ngIf="item.provincia_id==e.id">{{e.tipo_provincia}}</b></div>
+                            </td>
+                            <td><img class="image" width="50" height="50" src="fileSelect/{{item.imagen}}" alt="{{item.logo}}"></td>
+            
+            
+            
+
+                            <td>
+                                <div class="g-2">
+                                    <button class="btn text-primary btn-sm" (click)="editar(item.id)"> <i class="fa-solid fa-pen-to-square"></i> </button>
+                                    <button class="btn text-danger btn-sm" (click)="borrar(item.id)"> <i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </td>
+            
+                        </tr>
+            
+                    </tbody>
+            
+                </table> -->
+
             </div>
         </div>
     </div>
