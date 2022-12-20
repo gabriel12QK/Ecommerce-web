@@ -18,6 +18,8 @@ import { PageComponent } from './components/page.component';
 import { CardComponent } from './plantilla/card/card.component';
 import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
 import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
+import { LoginComponent } from './components/login/login.component';
+import { Error404Component } from './components/error404/error404.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
     PageComponent,
     CardComponent,
     CardbodyComponent,
-    VerPedidosComponent
+    VerPedidosComponent,
+    LoginComponent,
+    Error404Component
   ],
   imports: [
     BrowserModule,
