@@ -6,7 +6,7 @@
     <div class="row d-flex justify-content-center align-items-center h-60 w-50" style="margin: auto ; margin-top: 50px;">
         <div class="col-10 col-md-12 col-lg-12 col-xl-12" style="margin: auto;">
             <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                <form [formGroup]="_form">
+                <form [formGroup]="form">
                     <div class="card-body p-5 text-center">
 
                         <div class="mb-md-5 mt-md-4 pb-5">
@@ -18,7 +18,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="nombre" />
                                         <label class="form-label" for="typeEmailX">Nombre</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('nombre')?.touched && _form.get('nombre')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('nombre')?.touched && form.get('nombre')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -29,7 +29,7 @@
                                     <div class="form-outline form-white mb-4">
                                         <input type="text" class="form-control form-control-md" formControlName="precio" />
                                         <label class="form-label" for="typePasswordX">Precio</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('precio')?.touched && _form.get('precio')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('precio')?.touched && form.get('precio')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="peso" />
                                         <label class="form-label" for="typeEmailX">peso</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('peso')?.touched && _form.get('peso')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('peso')?.touched && form.get('peso')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                     <div class="form-outline form-white mb-4 ">
                                         <input type="text" class="form-control form-control-md" formControlName="stock" />
                                         <label class="form-label" for="typeEmailX">Stock</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('stock')?.touched && _form.get('stock')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('stock')?.touched && form.get('stock')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -60,9 +60,9 @@
 
                                 <div class="col-6">
                                     <div class="form-outline form-white mb-4 ">
-                                        <input type="text" class="form-control form-control-md" formControlName="imagen" />
+                                        <input type="file" (change)="getFile($event)" class="form-control form-control-md"  />
                                         <label class="form-label" for="typeEmailX">Imagen</label>
-                                        <div class="alert alert-danger" role="alert" *ngIf="_form.get('imagen')?.touched && _form.get('imagen')?.errors?.['required'] ">
+                                        <div class="alert alert-danger" role="alert" *ngIf="form.get('imagen')?.touched && form.get('imagen')?.errors?.['required'] ">
                                             CAMPO REQUERIDO
                                         </div>
                                     </div>
@@ -73,9 +73,9 @@
                                     <div class="form-outline form-white mb-4"  >
                         
                                       <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
-                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                         <option *ngFor="let item of categoria" value="{{item.id}}"> {{item.descripcion}} </option> 
                                       </select>
-                                      <label class="form-label" for="typeEmailX">Id_Categoria</label>
+                                      <label class="form-label" for="typeEmailX">Categoria</label>
                                    </div>
                                 </div>
 
@@ -84,7 +84,7 @@
                                     <div class="form-outline form-white mb-4"  >
                         
                                       <select class="form-select" aria-label="Default select example" formControlName="id_marca">
-                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                         <option *ngFor="let item of marca" value="{{item.id}}"> {{item.descripcion}} </option> 
                                       </select>
                                       <label class="form-label" for="typeEmailX">Id_Marca</label>
                                    </div>
@@ -95,7 +95,7 @@
                                     <div class="form-outline form-white mb-4"  >
                         
                                       <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
-                                        <!--  <option *ngFor="let item of tipo" value="{{item.id}}"> {{item.tipo}} </option> -->
+                                          <option *ngFor="let item of tipopeso" value="{{item.id}}"> {{item.descripcion}} </option> 
                                       </select>
                                       <label class="form-label" for="typeEmailX">Id_Tipo_Peso</label>
                                    </div>
@@ -104,6 +104,46 @@
                         </div>
                     </div>
                 </form>
+                <button class="btn btn-outline-light btn-lg px-5"  (click)="store(form.value)">registro</button>
+            
+        <table class="table-primary m-5">
+             <thead>
+            <tr class="text-center">
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Stock</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Id_Categoria</th>
+                <th scope="col">Id_Marca</th>
+                <th scope="col">Id_Tipo_Peso</th>
+                <th scope="col">Acciones</th>
+            </tr>
+                   </thead>
+                     <tbody>
+                <tr *ngFor="let item of producto">
+                  <td>{{item.id}}</td>
+                  <td>{{item.nombre}}</td>
+                  <td>{{item.precio}}</td>
+                  <td>{{item.peso}}</td>
+                  <td>{{item.stock}}</td>
+               
+                  <td>
+                    <div *ngFor="let e of tipopeso"><b *ngIf="item.provincia_id==e.id">{{e.tipo_provincia}}</b></div>
+                  </td>
+                  <td><img class="imagen" width="50" height="50" src="http://127.0.0.1:8000/public/storage/animal/{{item.imagen}}" alt="{{item.logo}}"></td>
+
+                  <td>
+                       <div class="g-2">
+                        <!--  <button class="btn btn-outline-light btn-lg px-5"  (click)="update(form.value)">registro  </button> -->
+                         <button class="btn btn-outline-light btn-lg px-5"  (click)="destroy(form.value)">Eliminar </button>
+                       </div>
+                  </td>
+                  </tr>
+                </tbody>
+
+             </table>
             </div>
         </div>
     </div>
