@@ -18,8 +18,9 @@ import { PageComponent } from './components/page.component';
 import { CardComponent } from './plantilla/card/card.component';
 import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
 import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login/login.component';
 import { Error404Component } from './components/error404/error404.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { Error404Component } from './components/error404/error404.component';
     CardbodyComponent,
     VerPedidosComponent,
     LoginComponent,
-    Error404Component
+    Error404Component,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
