@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams, HttpHeaders} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable, observable } from 'rxjs';
+import { IngresoProducto } from '../interfaces/ingresoProducto';
 
 @Injectable({
   providedIn: 'root'
@@ -11,60 +12,41 @@ export class ProductoService {
 
   constructor(private http:HttpClient) { }
 
-  getUsuarios(){
+  
+  getProducto(){
     return this.http.get<any>(`${environment.urlApi}producto`)
   }
 
-  // public _form = new FormGroup({
-  //   nombre: new FormControl('',Validators.required),
-  //   precio: new FormControl('',Validators.required),
-  //   peso: new FormControl('',Validators.required),
-  //   stock: new FormControl('',Validators.required),
-  //   imagen: new FormControl('',Validators.required),
-  //   id_categoria: new FormControl('',Validators.required),
-  //   id_marca: new FormControl('',Validators.required),
-  //   id_tipo_peso: new FormControl('',Validators.required),
-
   
-  // })
-
-
-  Registrarproducto(form:any){
+  storeProducto(form:IngresoProducto){
     console.log(form);
-    
+
+    let data=new FormData()
+    data.append('nombre',form.nombre.toString())
+    data.append('precio',form.precio.toString())
+    data.append('peso',form.peso.toString())
+    data.append('stock',form.stock.toString())
+    data.append('imagen',form.imagen)
+    data.append('id_categoria',form.id_categoria.toString())
+    data.append('id_marca',form.id_marca.toString())
+    data.append('id_tipo_peso',form.id_tipo_peso.toString());
+
+ 
+    return this.http.post<any>(`${environment.urlApi}producto`,data)
+  }
+
+
+  updateProducto(form:any, id:number):Observable<any>{
+    console.log(form);
     debugger
-    return this.http.post<any>(`${environment.urlApi}producto`,form)
+    return this.http.post<any>(`${environment.urlApi}producto/${id}`,form)
   }
 
-  Guardarproducto()
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"producto";
-    return this.http.get<any>(dir, {headers:header});
-  }
 
-  Editarproducto(_id:any):Observable<any>
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"producto/"+_id;
-    return this.http.get<any>(dir,{headers:header});
-  }
-  Borrarproducto(_form:any,_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"producto/"+_id;
-    return this.http.post<any>(dir,_form,{headers:header});
-  }
-
-  Eliminarproducto(_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"producto/"+_id;
-   return this.http.post<any>(dir,_id,{headers:header});
+  destroyProducto(id:number){
+    console.log(id);   
+    debugger
+    return this.http.delete<any>(`${environment.urlApi}producto/${id}`)
   }
 
 
