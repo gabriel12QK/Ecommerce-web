@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
-import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
+import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.component';
 
 
 
