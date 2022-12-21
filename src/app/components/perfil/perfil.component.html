@@ -4,11 +4,14 @@
     <div class="perfil mt-5"> <!-- la clase perfil está en el css -->
 
         <!-- Profile Image -->
-        <div class="card card-primary card-outline">
+        <div class=" card card-outline">
+            <div class="perfil-colores"> <!-- esto es una solucion fea pero funciona -->
+                .
+            </div>
           <div class="card-body box-profile">
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle"
-                   src="../../dist/img/user4-128x128.jpg"
+                   src="../assets/img/default-admin.png"
                    alt="User profile picture">
             </div>
 
@@ -18,25 +21,25 @@
 
             <ul class="list-group list-group-unbordered mb-3">
               <li class="list-group-item">
-                <b>Email</b> <span class="float-right">{{usuario.email}}</span>
+                <i class="fas fa-solid fa-envelope"></i> <b class="mx-3">Email</b> <span class="float-right">{{usuario.email}}</span>
               </li>
               <li class="list-group-item">
-                <b>Teléfono</b> <span class="float-right">{{usuario.telefono}}</span>
+                <i class="fas fa-regular fa-mobile"></i> <b class="mx-3">Teléfono</b> <span class="float-right">{{usuario.telefono}}</span>
               </li>
               <li class="list-group-item">
-                <b>Cédula</b> <span class="float-right">{{usuario.cedula}}</span>
+                <i class="fas fa-solid fa-id-card"></i> <b class="mx-3">Cédula</b> <span class="float-right">{{usuario.cedula}}</span>
               </li>
             </ul>
 
-            <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
+            <a href="#" class="boton-color btn  btn-block"><b>Editar información de perfil</b></a>
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
 
         <!-- About Me Box -->
-        <div class="card card-primary">
-          <div class="card-header">
+        <div class="card">
+          <div class="info-colores card-header">
             <h3 class="card-title">Información</h3>
           </div>
           <!-- /.card-header -->
