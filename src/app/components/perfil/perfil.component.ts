@@ -43,7 +43,7 @@ export class PerfilComponent implements OnInit {
 
     this.perfilS.getPerfil(_id).subscribe({
       next: (res) => {
-        console.log(res);
+        /* console.log(res); */
         this.usuario = res;
         
       },
@@ -55,7 +55,7 @@ export class PerfilComponent implements OnInit {
   }
 
   editarPerfil(){
-    console.log("Editar perfil.");
+    /* console.log("Editar perfil."); */
     this.isEdited = false;
   }
 
@@ -73,8 +73,18 @@ export class PerfilComponent implements OnInit {
     }
   }
 
-  editarPassword(form:any){
-
+  editarPassword(formP:any){
+    if(this.formPassword.valid){
+      this.perfilS.editPassword(formP, this.id).subscribe({
+        next: (res) => (console.log(res)),
+        error: (err) => (console.log(err))
+      });
+      this.getPerfil(this.id);
+      localStorage.setItem('email', formP.email);
+      this.isEdited = true;
+    }else{
+      this.formPassword.markAllAsTouched();
+    }
   }
 
   regresar(){
