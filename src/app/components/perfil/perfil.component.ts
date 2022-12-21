@@ -1,5 +1,6 @@
 import { PerfilService } from './../../servicios/perfil.service';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-perfil',
@@ -12,7 +13,23 @@ export class PerfilComponent implements OnInit {
   usuario!:any;
   isEdited:boolean = true;
 
-  constructor(private perfilS: PerfilService) { }
+  public formEmail!:FormGroup;
+  public formPassword!:FormGroup;
+
+  constructor(
+    private perfilS: PerfilService,
+    private formBuilder: FormBuilder
+    ) 
+  {
+    this.formEmail = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+
+    this.formPassword= this.formBuilder.group({
+      password: ['', [Validators.required]]
+    });
+
+  }
 
   ngOnInit(): void {
 
@@ -39,6 +56,29 @@ export class PerfilComponent implements OnInit {
 
   editarPerfil(){
     console.log("Editar perfil.");
+    this.isEdited = false;
+  }
+
+  editarEmail(formE:any){
+    if(this.formEmail.valid){
+      this.perfilS.editUserEmail(formE, this.id).subscribe({
+        next: (res) => (console.log(res)),
+        error: (err) => (console.log(err))
+      });
+      this.getPerfil(this.id);
+      localStorage.setItem('email', formE.email);
+      this.isEdited = true;
+    }else{
+      this.formEmail.markAllAsTouched();
+    }
+  }
+
+  editarPassword(form:any){
+
+  }
+
+  regresar(){
+    this.isEdited = true;
   }
 
 }

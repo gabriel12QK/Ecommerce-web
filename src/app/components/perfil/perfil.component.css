@@ -1,6 +1,14 @@
+body{
+    background-color: #F8F8F8;
+}
+
+.fondo{
+    background-color: #F8F8F8;
+}
+
 .perfil{
     margin-left: 250px;
-    margin-right: 250px;
+    margin-right: 250px; 
 }
 
 .perfil-colores{

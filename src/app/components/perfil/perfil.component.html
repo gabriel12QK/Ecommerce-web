@@ -1,6 +1,6 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<div class="content-wrapper">
+<div class="fondo content-wrapper">
     <!-- perfil -->
     <div class="perfil mt-5" *ngIf="isEdited === true"> <!-- la clase perfil está en el css -->
 
@@ -34,7 +34,7 @@
                     </li>
                 </ul>
 
-                <a href="#" class="boton-color btn  btn-block" (click)="editarPerfil()"><b>Editar información de perfil</b></a>
+                <a class="boton-color btn  btn-block" (click)="editarPerfil()"><b>Editar información de perfil</b></a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -85,35 +85,52 @@
 
     <!-- editar informacion de perfil -->
 
-    <div class="perfil card">
+    <div class="perfil card mt-5" *ngIf="isEdited === false">
         <div class="perfil-colores card-header">
           <h3 class="texto card-title">Editar información</h3>
         </div>
 
         <div class="card-body">
-            <form action="" class="formulario">
+            <form [formGroup]="formEmail" action="" class="formulario">
                 <div class="input-group mb-1">
                     <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Email"  [value]="usuario.email">
+                    <input type="text" class="form-control" placeholder="Email"  value="{{usuario.email}}" formControlName="email">
+                    <br>
+                   
+                </div>
+
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['required']">
+                    Campo requerido
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['email']">
+                    Email requerido
                 </div>
 
                 <div class="boton-flex">
-                    <a href="#" class="boton-color boton-editar btn" (click)="editarPerfil()"><b>Editar email</b></a>
+                    <a class="boton-color boton-editar btn" (click)="editarEmail(formEmail.value)"><b>Editar email</b></a>
                 </div>
                 
             </form>
     
-            <form action="">
+            <form action="" [formGroup]="formPassword">
                 <div class="input-group mb-1">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Password">
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
                 </div>
+
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formPassword.get('password')?.touched && formPassword.get('password')?.errors?.['required']">
+                    Campo requerido
+                </div>
+
                 <div class="boton-flex">
-                    <a href="#" class="boton-color btn" (click)="editarPerfil()"><b>Editar contraseña</b></a>
+                    <a class="boton-color btn" (click)="editarPassword(formPassword.value)"><b>Editar contraseña</b></a>
                 </div>
             </form>
         </div>
