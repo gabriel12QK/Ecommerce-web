@@ -21,6 +21,7 @@ import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { Error404Component } from './components/error404/error404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     VerPedidosComponent,
     LoginComponent,
     Error404Component,
-    DashboardComponent
+    DashboardComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

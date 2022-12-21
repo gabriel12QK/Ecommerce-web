@@ -8,6 +8,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
 import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 
 
@@ -37,9 +38,20 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'perfil',
+    component: PerfilComponent
+  },
+
+
+
+  //si van a poner una ruta ponganla arriba de esto
+  //esta ruta nos lleva hacia una pagina de error
+  //por ahora no se usará
+  /* {
     path: '**',
     component: Error404Component
-  }
+  }, */
+  
 ];
 
 @NgModule({
