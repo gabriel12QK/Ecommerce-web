@@ -1,0 +1,24 @@
+.perfil{
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
+.perfil-colores{
+    color: #59B220;
+    background-color: #59B220;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.info-colores{
+    
+    background-color: #59B220;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.boton-color{
+
+    background-color: #F7881F;
+    color: #F8F8F8;
+}

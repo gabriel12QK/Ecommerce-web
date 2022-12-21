@@ -6,9 +6,10 @@ import { HomeComponent } from './components/home/home.component';
 import { IngresoProductoComponent } from './components/ingreso-producto/ingreso-producto.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegistrarUsuarioComponent } from './components/registrar-usuario/registrar-usuario.component';
-import { VerPedidosComponent } from './ver-pedidos/ver-pedidos.component';
+import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+
 
 
 
