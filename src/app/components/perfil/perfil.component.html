@@ -87,7 +87,7 @@
 
     <div class="perfil card mt-5" *ngIf="isEdited === false">
         <div class="perfil-colores card-header">
-          <h3 class="texto card-title">Editar información</h3>
+          <h3 class="texto card-title"><i class="fas fa-solid fa-arrow-left" style="margin-right: 10px;" (click)="regresar()"></i> Editar información</h3>
         </div>
 
         <div class="card-body">
@@ -135,6 +135,10 @@
             </form>
         </div>
         <!-- /.card-body -->
+
+        <!-- <div class="card-footer">
+            usar en caso de emergencia
+        </div> -->
     
     </div>
 
