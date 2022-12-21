@@ -1,3 +1,4 @@
+import { PerfilService } from './../../servicios/perfil.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor() { }
+  id:any;
+  usuario!:any;
+
+  constructor(private perfilS: PerfilService) { }
 
   ngOnInit(): void {
+
+    this.id = localStorage.getItem('id');
+    console.log(this.id);
+    this.getPerfil(this.id);
+
+  }
+
+  getPerfil(_id:any){
+
+    this.perfilS.getPerfil(_id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.usuario = res;
+        
+      },
+      error(err) {
+        console.error(err);
+      },
+    });
+
   }
 
 }
