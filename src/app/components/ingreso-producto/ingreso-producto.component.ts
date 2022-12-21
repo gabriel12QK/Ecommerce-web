@@ -24,6 +24,7 @@ export class IngresoProductoComponent implements OnInit {
   file: File | any;
   fileSelect: any;
   public form !: FormGroup
+  url: string = "http://127.0.0.1:8000/storage/images/producto/";
 
 
   constructor(
@@ -32,10 +33,8 @@ export class IngresoProductoComponent implements OnInit {
     private apiMarca: MarcaService,
     private apiTipoPeso: TipoPesoService,
     private router: Router,
-    private _formB: FormBuilder) {
-  }
-
-  ngOnInit(): void {
+    private _formB: FormBuilder
+  ) {
     this.form = this._formB.group({
       nombre: ['', [Validators.required]],
       precio: ['', [Validators.required]],
@@ -46,87 +45,81 @@ export class IngresoProductoComponent implements OnInit {
       id_marca: ['',],
       id_tipo_peso: ['',],
     });
+  }
+
+  ngOnInit(): void {
 
     this.apiCategoria.getCategoria().subscribe({
       next: (res) => (this.categoria = res),
-    })
+    });
 
     this.apiMarca.getMarca().subscribe({
       next: (res) => (this.marca = res),
-    })
+    });
 
     this.apiTipoPeso.getTipoPeso().subscribe({
       next: (res) => (this.tipopeso = res),
-    })
+    });
+
+    this.getProducto();
   }
 
   getFile(event: any) {
-    const archivo = event.target.files[0];
-    console.log(archivo);
-    const reader = new FileReader();
-    reader.readAsDataURL(archivo);
-    reader.onloadend = () => {
-      this.fileSelect = reader.result;
-    };
-    this.file = archivo;
+    this.file = event.target.files[0];
   }
 
   store(_form: any) {
-    console.log(this.file.name);
 
     if (this.file) {
-    
-      let data:IngresoProducto={
-        nombre:_form.nombre,
-        peso:_form.peso,
-        precio:_form.precio,
-        stock:_form.stock,
-        imagen:this.file,
-        id_categoria:_form.id_categoria,
-        id_marca:_form.id_marca,
-        id_tipo_peso:_form.id_tipo_peso,
-      }
 
       this.form.controls['imagen'].setValue(this.file.name);
+
+      let data: IngresoProducto = {
+        nombre: _form.nombre,
+        peso: _form.peso,
+        precio: _form.precio,
+        stock: _form.stock,
+        imagen: this.file,
+        id_categoria: _form.id_categoria,
+        id_marca: _form.id_marca,
+        id_tipo_peso: _form.id_tipo_peso,
+      }
+
       if (this.form.valid) {
-        console.log(this.form.value);
-  
         this.apiProducto.storeProducto(data).subscribe({
           next: (res) => (console.log(res)),
           error: (err) => (console.log(err)),
-        })
+        });
       }
       else {
         this.form.markAllAsTouched();
       }
 
-    }else{
-      console.log("No hay archivo");
-    } 
-  
+    }
+
   }
 
+  getProducto() {
+    this.apiProducto.getProducto().subscribe({
+      next: (res) => { this.producto = res; console.log(res) },
+      error: (err) => console.log(err)
+    })
+  }
 
 
   update(_id: any, _form: any) {
 
     localStorage.setItem("id", _id);
     this.button = false
-    this.apiProducto.updateProducto(_form, _id).subscribe(data => {
-      let t: any = data;
-      this.form.setValue({
-        'nombre': t.nombre,
-        'precio': t.precio,
-        'peso': t.peso,
-        'stock': t.stock,
-        'id_categoria': 1,
-        'id_marca': 1,
-        'id_tipo_peso': 1,
-        'imagen': t.imagen
+    if (this.form.valid) {
+
+
+      this.apiProducto.updateProducto(_form, _id).subscribe({
+
+        next:(res)=>{ console.log(res)},
+        error:(err)=>{ console.log(err)}
       });
-      (console.log(data))
-      debugger
-    });
+    }
   }
 
 
