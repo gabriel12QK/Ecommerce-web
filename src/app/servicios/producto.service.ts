@@ -3,6 +3,7 @@ import {HttpClient,HttpParams, HttpHeaders} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable, observable } from 'rxjs';
 import { IngresoProducto } from '../interfaces/ingresoProducto';
+import { ResIngresoProducto } from '../interfaces/ResIngresoProducto';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ProductoService {
 
   
   getProducto(){
-    return this.http.get<any>(`${environment.urlApi}producto`)
+    return this.http.get<ResIngresoProducto[]>(`${environment.urlApi}producto`)
   }
 
   
@@ -36,10 +37,9 @@ export class ProductoService {
   }
 
 
-  updateProducto(form:any, id:number):Observable<any>{
+  updateProducto(form:any):Observable<any>{
     console.log(form);
-    debugger
-    return this.http.post<any>(`${environment.urlApi}producto/${id}`,form)
+    return this.http.put<any>(`${environment.urlApi}producto/${form.id}`,form)
   }
 
 

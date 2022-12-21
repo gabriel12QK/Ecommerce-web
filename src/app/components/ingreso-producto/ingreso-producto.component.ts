@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router'
-import { environment } from 'src/environments/environment';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { MarcaService } from 'src/app/servicios/marca.service';
 import { CategoriaService } from 'src/app/servicios/categoria.service';
 import { TipoPesoService } from 'src/app/servicios/tipo-peso.service';
-import { nextTick } from 'process';
+
 import { IngresoProducto } from 'src/app/interfaces/ingresoProducto';
+import { ResIngresoProducto } from 'src/app/interfaces/ResIngresoProducto';
 
 @Component({
   selector: 'app-ingreso-producto',
@@ -18,7 +17,7 @@ export class IngresoProductoComponent implements OnInit {
 
   button: boolean = true;
   tipopeso: any = [];
-  producto: any = [];
+  producto: ResIngresoProducto[] = [];
   categoria: any = [];
   marca: any = [];
   file: File | any;
@@ -26,16 +25,17 @@ export class IngresoProductoComponent implements OnInit {
   public form !: FormGroup
   url: string = "http://127.0.0.1:8000/storage/images/producto/";
 
+  isUpdate: boolean = false;
 
   constructor(
     private apiProducto: ProductoService,
     private apiCategoria: CategoriaService,
     private apiMarca: MarcaService,
     private apiTipoPeso: TipoPesoService,
-    private router: Router,
     private _formB: FormBuilder
   ) {
     this.form = this._formB.group({
+      id: [''],
       nombre: ['', [Validators.required]],
       precio: ['', [Validators.required]],
       peso: ['', [Validators.required]],
@@ -68,31 +68,37 @@ export class IngresoProductoComponent implements OnInit {
     this.file = event.target.files[0];
   }
 
-  store(_form: any) {
+  store() {
 
-    if (this.file) {
+    if (this.isUpdate) {
+      this.update();
 
-      this.form.controls['imagen'].setValue(this.file.name);
+    } else {
+      if (this.file) {
 
-      let data: IngresoProducto = {
-        nombre: _form.nombre,
-        peso: _form.peso,
-        precio: _form.precio,
-        stock: _form.stock,
-        imagen: this.file,
-        id_categoria: _form.id_categoria,
-        id_marca: _form.id_marca,
-        id_tipo_peso: _form.id_tipo_peso,
-      }
+        this.form.controls['imagen'].setValue(this.file.name);
 
-      if (this.form.valid) {
-        this.apiProducto.storeProducto(data).subscribe({
-          next: (res) => (console.log(res)),
-          error: (err) => (console.log(err)),
-        });
-      }
-      else {
-        this.form.markAllAsTouched();
+        let data: IngresoProducto = {
+          id: 0,
+          nombre: this.form.value.nombre,
+          peso: this.form.value.peso,
+          precio: this.form.value.precio,
+          stock: this.form.value.stock,
+          imagen: this.file,
+          id_categoria: this.form.value.id_categoria,
+          id_marca: this.form.value.id_marca,
+          id_tipo_peso: this.form.value.id_tipo_peso,
+        }
+
+        if (this.form.valid) {
+          this.apiProducto.storeProducto(data).subscribe({
+            next: (res) => (console.log(res)),
+            error: (err) => (console.log(err)),
+          });
+        }
+        else {
+          this.form.markAllAsTouched();
+        }
       }
 
     }
@@ -101,25 +107,37 @@ export class IngresoProductoComponent implements OnInit {
 
   getProducto() {
     this.apiProducto.getProducto().subscribe({
-      next: (res) => { this.producto = res; console.log(res) },
+      next: (res) => {this.producto = res; console.log(res)},
       error: (err) => console.log(err)
     })
   }
 
+  actualizar(id: number) {
+    this.isUpdate = true;
 
-  update(_id: any, _form: any) {
+    let product = this.producto.find(e => e.id == id);
+    if (product) {
+      this.form.controls['id'].setValue(product?.id);
+      this.form.controls['nombre'].setValue(product?.nombre);
+      this.form.controls['peso'].setValue(product?.peso);
+      this.form.controls['precio'].setValue(product?.precio);
+      this.form.controls['stock'].setValue(product?.stock);
 
-    localStorage.setItem("id", _id);
-    this.button = false
-    if (this.form.valid) {
+      this.form.controls['id_categoria'].setValue(product?.id_categoria);
+      this.form.controls['id_marca'].setValue(product?.id_marca);
+      this.form.controls['id_tipo_peso'].setValue(product?.id_tipo_peso);
 
-
-      this.apiProducto.updateProducto(_form, _id).subscribe({
-
-        next:(res)=>{ console.log(res)},
-        error:(err)=>{ console.log(err)}
-      });
     }
+  }
+
+
+  update() {
+    this.apiProducto.updateProducto(this.form.value).subscribe({
+
+      next: (res) => { console.log(res) ; this.getProducto() },
+      error: (err) => { console.log(err) }
+    });
+
   }
 
 

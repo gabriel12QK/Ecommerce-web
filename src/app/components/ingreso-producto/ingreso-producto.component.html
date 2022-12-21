@@ -3,7 +3,7 @@
 
 <div class="content-wrapper bg-dark">
     <app-breadcrumbs></app-breadcrumbs>
-    <form [formGroup]="form" class="row m-3 p-4 shadow">
+    <form [formGroup]="form" class="row m-3 p-4 shadow" (submit)="store()">
 
         <h2 class=" col-12 fw-bold mb-2 text-uppercase mt-4">Registro Producto</h2>
 
@@ -98,8 +98,10 @@
         </div>
 
         <div class="col-12 col-md-3">
-            <button (click)="store(form.value)" class="btn btn-success w-100">Guardar</button>
+            <button *ngIf="!isUpdate" (click)="store()" class="btn btn-primary w-100">Guardar</button>
+            <button *ngIf="isUpdate"  class="btn btn-info w-100">Actualizar</button>
         </div>
+
 
     </form>
 
@@ -136,7 +138,7 @@
 
                     <td>
                         <div class="d-flex justify-content-evenly align-items">
-                            <button class="btn btn-info me-1" (click)="update(item.id, form.value)">Editar
+                            <button class="btn btn-info me-1" (click)="actualizar(item.id)">Editar
                             </button>
 
 
