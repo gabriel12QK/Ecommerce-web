@@ -1,64 +1,67 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
 <div class="content-wrapper">
-    <div class="perfil mt-5"> <!-- la clase perfil está en el css -->
+    <div class="perfil mt-5" *ngIf="isEdited === true"> <!-- la clase perfil está en el css -->
 
         <!-- Profile Image -->
         <div class=" card card-outline">
             <div class="perfil-colores"> <!-- esto es una solucion fea pero funciona -->
                 .
             </div>
-          <div class="card-body box-profile">
-            <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="../assets/img/default-admin.png"
-                   alt="User profile picture">
+            <div class="card-body box-profile">
+                <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle" src="../assets/img/default-admin.png"
+                        alt="User profile picture">
+                </div>
+
+                <h3 class="profile-username text-center">{{usuario.name}} {{usuario.last_name}}</h3>
+
+                <p class="text-muted text-center">Administrador</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                    <li class="list-group-item">
+                        <i class="fas fa-solid fa-envelope"></i> <b class="mx-3">Email</b> <span
+                            class="float-right">{{usuario.email}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-regular fa-mobile"></i> <b class="mx-3">Teléfono</b> <span
+                            class="float-right">{{usuario.telefono}}</span>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-solid fa-id-card"></i> <b class="mx-3">Cédula</b> <span
+                            class="float-right">{{usuario.cedula}}</span>
+                    </li>
+                </ul>
+
+                <a href="#" class="boton-color btn  btn-block" (click)="editarPerfil()"><b>Editar información de
+                        perfil</b></a>
             </div>
-
-            <h3 class="profile-username text-center">{{usuario.name}} {{usuario.last_name}}</h3>
-
-            <p class="text-muted text-center">Administrador</p>
-
-            <ul class="list-group list-group-unbordered mb-3">
-              <li class="list-group-item">
-                <i class="fas fa-solid fa-envelope"></i> <b class="mx-3">Email</b> <span class="float-right">{{usuario.email}}</span>
-              </li>
-              <li class="list-group-item">
-                <i class="fas fa-regular fa-mobile"></i> <b class="mx-3">Teléfono</b> <span class="float-right">{{usuario.telefono}}</span>
-              </li>
-              <li class="list-group-item">
-                <i class="fas fa-solid fa-id-card"></i> <b class="mx-3">Cédula</b> <span class="float-right">{{usuario.cedula}}</span>
-              </li>
-            </ul>
-
-            <a href="#" class="boton-color btn  btn-block"><b>Editar información de perfil</b></a>
-          </div>
-          <!-- /.card-body -->
+            <!-- /.card-body -->
         </div>
         <!-- /.card -->
 
         <!-- About Me Box -->
         <div class="card">
-          <div class="info-colores card-header">
-            <h3 class="card-title">Información</h3>
-          </div>
-          <!-- /.card-header -->
-          <div class="card-body">
-            <!-- <strong><i class="fas fa-book mr-1"></i> Education</strong>
+            <div class="info-colores card-header">
+                <h3 class="card-title">Información</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <!-- <strong><i class="fas fa-book mr-1"></i> Education</strong>
 
             <p class="text-muted">
               B.S. in Computer Science from the University of Tennessee at Knoxville
             </p> -->
 
-            <hr>
+                <hr>
 
-            <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
 
-            <p class="text-muted">{{usuario.referencia}}</p>
+                <p class="text-muted">{{usuario.referencia}}</p>
 
-            <hr>
+                <hr>
 
-            <!-- <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
+                <!-- <strong><i class="fas fa-pencil-alt mr-1"></i> Skills</strong>
 
             <p class="text-muted">
               <span class="tag tag-danger">UI Design</span>
@@ -68,15 +71,16 @@
               <span class="tag tag-primary">Node.js</span>
             </p> -->
 
-            <hr>
+                <hr>
 
-            <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
 
-            <p class="text-muted">Faltan un chance mas de cosas y el editar.</p>
-          </div>
-          <!-- /.card-body -->
+                <p class="text-muted">Faltan un chance mas de cosas y el editar.</p>
+            </div>
+            <!-- /.card-body -->
         </div>
         <!-- /.card -->
-      </div>
+
+    </div>
 </div>
 <app-footer></app-footer>

@@ -10,6 +10,7 @@ export class PerfilComponent implements OnInit {
 
   id:any;
   usuario!:any;
+  isEdited:boolean = true;
 
   constructor(private perfilS: PerfilService) { }
 
@@ -34,6 +35,10 @@ export class PerfilComponent implements OnInit {
       },
     });
 
+  }
+
+  editarPerfil(){
+    console.log("Editar perfil.");
   }
 
 }
