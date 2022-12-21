@@ -11,37 +11,29 @@
           <form [formGroup]="form">
             <div class="input-group mb-3">
               <input type="email" class="form-control" formControlName="email" placeholder="Email">
-              <div class="alert alert-danger" role="alert" *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required'] ">
-                CAMPO REQUERIDO
-            </div>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-envelope"></span>
                 </div>
               </div>
             </div>
+            <div class="alert alert-danger" role="alert" *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required'] ">
+              Correo Requerido
+            </div>
             <div class="input-group mb-3">
               <input type="password" class="form-control" formControlName="password" placeholder="Password">
-              <div class="alert alert-danger" role="alert" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required'] ">
-                CAMPO REQUERIDO
-            </div>
               <div class="input-group-append">
                 <div class="input-group-text">
                   <span class="fas fa-lock"></span>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-8">
-                <div class="icheck-success">
-                  <input type="checkbox" id="remember">
-                  <label for="remember">
-                    Recordarme
-                  </label>
-                </div>
-              </div>
+            <div class="alert alert-danger" role="alert" *ngIf="form.get('password')?.touched && form.get('password')?.errors?.['required'] ">
+              Contraseña Requerida
+          </div>
+            <div class="row ">
               <!-- /.col -->
-              <div class="col-4">
+              <div class="text-center mb-3 mt-3 ">
                 <button type="submit" class="btn btn-success btn-block " (click)="login(form.value)">Iniciar</button>
               </div>
               <!-- /.col -->
