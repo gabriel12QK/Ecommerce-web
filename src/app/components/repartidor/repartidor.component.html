@@ -28,25 +28,35 @@
             <div class="card-body table-responsive p-0" style="height: 400px;">
               <table class="table table-head-fixed text-nowrap">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Email</th>
-                        <th>Cédula</th>
-                        <th>Teléfono</th>
-                        <th>Dirección</th>
-                        <th>Referencia</th>
-                        <th>Acciones</th>
-                    </tr>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Cédula</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                    <!-- <th>Referencia</th> --> <!-- quitado hasta proximo aviso -->
+                  </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>183</td>
-                        <td>John Doe</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-success">Approved</span></td>
-                        <td>Bacon ipsum dolor flank fatback doner.</td>
-                    </tr>
+                  <tr *ngFor="let r of repartidores">
+                    <td>{{r.id}}</td>
+                    <td>{{r.name}} {{r.last_name}}</td>
+                    <td>{{r.email}}</td>
+                    <td>{{r.cedula}}</td>
+                    <td>{{r.telefono}}</td>
+                    <td>{{r.direccion}}</td>
+                    <td>
+                      <a class="btn btn-primary">
+                        <i class="fas fa-solid fa-pen"></i>
+                      </a>
+                      <a class="btn btn-danger mx-1">
+                        <i class="fas fa-solid fa-trash"></i>
+                      </a>
+                    </td>
+                    <!-- <td>{{r.referencia}}</td>  --><!-- quitado hasta proximo aviso -->
+                  </tr>
                 </tbody>
               </table>
             </div>
