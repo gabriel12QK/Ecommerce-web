@@ -40,7 +40,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr *ngFor="let e of entregados">
+                            <tr *ngFor="let e of entregados | pipePedido:pageE">
                               <td>{{e.numero_pedido}}</td>
                               <td>{{e.fecha_venta}}</td>
                               <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
@@ -49,7 +49,13 @@
                               <td>{{e.total}}</td>
                             </tr>
                           </table>
+                          <div style="margin-top: 10px;">
+                            <button type="button" class="btn btn-success btn-sm" (click)="previousPage_entregados()">Anterior</button>
+                          &nbsp;
+                          <button type="button" class="btn btn-success btn-sm"(click)="nextPage_entregados()">Siguiente</button>
+                          </div>
                         </div>
+
                         <!-- /.card-body -->
                       </div>
 
@@ -73,7 +79,7 @@
                                   </tr>
                                   </thead>
                                   <tbody>
-                                  <tr *ngFor="let e of por_entregar">
+                                  <tr *ngFor="let e of por_entregar | pipePedido:pageP">
                                     <td>{{e.numero_pedido}}</td>
                                     <td>{{e.fecha_venta}}</td>
                                     <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
@@ -82,6 +88,12 @@
                                     <td>{{e.total}}</td>
                                   </tr>
                           </table>
+                          <div style="margin-top: 10px;">
+                            <button type="button" class="btn btn-success btn-sm" (click)="previousPage_Porentregar()">Anterior</button>
+                          &nbsp;
+                          <button type="button" class="btn btn-success btn-sm"(click)=" nextPage_Porentregar()">Siguiente</button>
+                          </div>
+                          
                         </div>
                         <!-- /.card-body -->
                       </div>
@@ -104,7 +116,7 @@
                                   </tr>
                                   </thead>
                                   <tbody>
-                                  <tr *ngFor="let e of en_curso">
+                                  <tr *ngFor="let e of en_curso | pipePedido:pageC">
                                     <td>{{e.numero_pedido}}</td>
                                     <td>{{e.fecha_venta}}</td>
                                     <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
@@ -113,6 +125,11 @@
                                     <td>{{e.total}}</td>
                                   </tr>
                           </table>
+                          <div style="margin-top: 10px;">
+                            <button type="button" class="btn btn-success btn-sm" (click)="previousPage_Encurso()" >Anterior</button>
+                          &nbsp;
+                          <button type="button" class="btn btn-success btn-sm"  (click)="nextPage_Encurso()">Siguiente</button>
+                          </div>
                         </div>
                         <!-- /.card-body -->
                       </div>

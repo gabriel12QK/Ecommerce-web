@@ -11,6 +11,9 @@ export class VerPedidosComponent implements OnInit {
   entregados:any
   en_curso:any
   por_entregar:any
+  pageE:number=0
+  pageC:number=0
+  pageP:number=0
   constructor(
     private orden:PedidosService
   ) { }
@@ -34,5 +37,30 @@ export class VerPedidosComponent implements OnInit {
         //debugger
       }
     })
+  }
+
+  nextPage_entregados(){
+    this.pageE+=2
+  }
+
+  previousPage_entregados(){
+    if(this.pageE>0)
+    this.pageE-=2
+  }
+  nextPage_Encurso(){
+    this.pageC+=2
+  }
+
+  previousPage_Encurso(){
+    if(this.pageC>0)
+    this.pageC-=2
+  }
+  nextPage_Porentregar(){
+    this.pageP+=2
+  }
+
+  previousPage_Porentregar(){
+    if(this.pageP>0)
+    this.pageP-=2
   }
 }

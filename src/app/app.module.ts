@@ -22,6 +22,8 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { Error404Component } from './components/error404/error404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     LoginComponent,
     Error404Component,
     DashboardComponent,
-    PerfilComponent
+    PerfilComponent,
+    PipePedidoPipe,
   ],
   imports: [
     BrowserModule,
