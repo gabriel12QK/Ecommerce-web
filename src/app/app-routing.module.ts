@@ -1,3 +1,4 @@
+import { RepartidorComponent } from './components/repartidor/repartidor.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -42,6 +43,10 @@ const routes: Routes = [
     path: 'perfil',
     component: PerfilComponent
   },
+  {
+    path: 'repartidor',
+    component: RepartidorComponent
+  }
 
 
 
