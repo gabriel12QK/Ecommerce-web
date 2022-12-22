@@ -15,4 +15,12 @@ export class PerfilService {
     return this.http.get<any>(`${environment.urlApi}show/${id}`);
   }
 
+  editUserEmail(form:any, id:any){
+    return this.http.post<any>(`${environment.urlApi}update-email/${id}`, form)
+  }
+
+  editPassword(form:any, id:any){
+    return this.http.post<any>(`${environment.urlApi}update-password/${id}`, form)
+  }
+
 }

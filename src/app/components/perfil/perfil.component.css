@@ -1,6 +1,14 @@
+body{
+    background-color: #F8F8F8;
+}
+
+.fondo{
+    background-color: #F8F8F8;
+}
+
 .perfil{
     margin-left: 250px;
-    margin-right: 250px;
+    margin-right: 250px; 
 }
 
 .perfil-colores{
@@ -20,5 +28,17 @@
 .boton-color{
 
     background-color: #F7881F;
+    color: #F8F8F8;
+}
+
+.boton-flex{
+ display: flex;
+ justify-content: right;
+}
+.boton-editar{
+    margin-bottom: 15px;
+}
+
+.texto{
     color: #F8F8F8;
 }

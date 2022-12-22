@@ -1,6 +1,7 @@
 <app-header></app-header>
 <app-sidebar></app-sidebar>
-<div class="content-wrapper">
+<div class="fondo content-wrapper">
+    <!-- perfil -->
     <div class="perfil mt-5" *ngIf="isEdited === true"> <!-- la clase perfil está en el css -->
 
         <!-- Profile Image -->
@@ -33,8 +34,7 @@
                     </li>
                 </ul>
 
-                <a href="#" class="boton-color btn  btn-block" (click)="editarPerfil()"><b>Editar información de
-                        perfil</b></a>
+                <a class="boton-color btn  btn-block" (click)="editarPerfil()"><b>Editar información de perfil</b></a>
             </div>
             <!-- /.card-body -->
         </div>
@@ -55,7 +55,7 @@
 
                 <hr>
 
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> Ubicación</strong>
 
                 <p class="text-muted">{{usuario.referencia}}</p>
 
@@ -75,12 +75,72 @@
 
                 <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
 
-                <p class="text-muted">Faltan un chance mas de cosas y el editar.</p>
+                <p class="text-muted">Faltan un chance mas de cosas y el editar. Lo de la  ubicación debe ir con lo del mapa pero eso se hace despues.</p>
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
 
     </div>
+
+    <!-- editar informacion de perfil -->
+
+    <div class="perfil card mt-5" *ngIf="isEdited === false">
+        <div class="perfil-colores card-header">
+          <h3 class="texto card-title"><i class="fas fa-solid fa-arrow-left" style="margin-right: 10px;" (click)="regresar()"></i> Editar información</h3>
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="formEmail" action="" class="formulario">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Email"  value="{{usuario.email}}" formControlName="email">
+                    <br>
+                   
+                </div>
+
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['required']">
+                    Campo requerido
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['email']">
+                    Email requerido
+                </div>
+
+                <div class="boton-flex">
+                    <a class="boton-color boton-editar btn" (click)="editarEmail(formEmail.value)"><b>Editar email</b></a>
+                </div>
+                
+            </form>
+    
+            <form action="" [formGroup]="formPassword">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                </div>
+
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formPassword.get('password')?.touched && formPassword.get('password')?.errors?.['required']">
+                    Campo requerido
+                </div>
+
+                <div class="boton-flex">
+                    <a class="boton-color btn" (click)="editarPassword(formPassword.value)"><b>Editar contraseña</b></a>
+                </div>
+            </form>
+        </div>
+        <!-- /.card-body -->
+
+        <!-- <div class="card-footer">
+            usar en caso de emergencia
+        </div> -->
+    
+    </div>
+
 </div>
 <app-footer></app-footer>
