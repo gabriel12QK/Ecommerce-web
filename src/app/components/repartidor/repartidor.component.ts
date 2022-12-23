@@ -78,6 +78,10 @@ export class RepartidorComponent implements OnInit {
     this.isAdd = true;
   }
 
+  regresar(){
+    this.isAdd = false;
+  }
+
   getFile(event: any) {
     this.file = event.target.files[0];
   }
@@ -117,6 +121,19 @@ export class RepartidorComponent implements OnInit {
     } else {
       console.error("La imagen es requerida.");
     }
+  }
+
+
+  deleteRepartidor(id:any){
+    this.repartidorS.eliminarUsuario(id).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+    this.getAllRepartidores();
   }
 
 

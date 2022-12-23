@@ -54,7 +54,7 @@
                       <a class="btn btn-primary">
                         <i class="fas fa-solid fa-pen"></i>
                       </a>
-                      <a class="btn btn-danger mx-1">
+                      <a class="btn btn-danger mx-1" (click)="deleteRepartidor(r.id)">
                         <i class="fas fa-solid fa-trash"></i>
                       </a>
                     </td>
@@ -69,11 +69,11 @@
         </div>
     </div>
 
-    <!-- Formulario -->
+    <!-- Formulario Ingreso Repartidor-->
 
-    <div class="margen-tabla card mt-5" ><!-- *ngIf="isEdited === false" -->
+    <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
       <div class="colores-form card-header">
-        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un repartidor -- TODAVIA LE FALTA</h3>
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un repartidor</h3>
       </div>
 
       <div class="card-body">
@@ -168,8 +168,9 @@
 
               
 
-            <div class="d-flex justify-content-end">
-                <a class="boton-color boton-editar btn" (click)="storeRepartidor()"><b>Guardar</b></a>
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="storeRepartidor()"><b>Guardar</b></a>
             </div>
               
           </form>

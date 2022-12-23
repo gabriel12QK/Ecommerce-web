@@ -30,4 +30,10 @@ export class RepartidorService {
     
     return this.http.post<any>(`${environment.urlApi}registro-repartidor`, data);
   }
+
+  eliminarUsuario(id:any){ //sirve para repartidores y usuarios
+    return this.http.delete<any>(`${environment.urlApi}delete-usuario/${id}`);
+  }
+
+
 }
