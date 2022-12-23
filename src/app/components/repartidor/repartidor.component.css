@@ -26,3 +26,12 @@ body{
     background-color: #F7881F;
     color: #F8F8F8;
 }
+
+.margen-in{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.colores-form{
+    background-color: #59B220;
+}

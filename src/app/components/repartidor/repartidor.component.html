@@ -3,10 +3,13 @@
 <div class="fondo content-wrapper">
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un repartidor</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
+            <a class="boton-color btn" (click)="agregarRepartidor()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un repartidor</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
         </div>
     </div>
-    <div class="row margen-tabla">
+
+    <!-- Tabla -->
+
+    <div class="row margen-tabla" *ngIf="isAdd === false">
         <div class="col-12">
           <div class="card">
             <div class="card-header  fondo-verde">
@@ -64,7 +67,120 @@
           </div>
           <!-- /.card -->
         </div>
+    </div>
+
+    <!-- Formulario -->
+
+    <div class="margen-tabla card mt-5" ><!-- *ngIf="isEdited === false" -->
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un repartidor -- TODAVIA LE FALTA</h3>
       </div>
+
+      <div class="card-body">
+          <form [formGroup]="formRepartidor" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Contraseña"  formControlName="password">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 margen-in">
+                <div class="form-group">
+                  <!-- <label for="customFile">Custom File</label> -->
+                  <!-- <label for="formFile" class="form-label">Default file input example</label> -->
+                  <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
+
+                  <!-- <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" (change)="getFile($event)">
+                    <label class="custom-file-label" for="customFile">Elegir un archivo</label>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+                 
+
+              
+
+            <div class="d-flex justify-content-end">
+                <a class="boton-color boton-editar btn" (click)="storeRepartidor()"><b>Guardar</b></a>
+            </div>
+              
+          </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
     
 
 
