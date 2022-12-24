@@ -1,3 +1,4 @@
+import { ResRespartidorInterface } from './../../interfaces/resRepartidorInterface';
 import { repartidorInterface } from './../../interfaces/repartidorInterface';
 import { PerfilService } from './../../servicios/perfil.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,19 +13,22 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class RepartidorComponent implements OnInit {
 
-  repartidores!:any;
+  repartidores: ResRespartidorInterface[] = [];
 
   isAdd:boolean = false;
   isUpdate:boolean = false;
 
   public formRepartidor!: FormGroup;
+  public formUpdateRepartidor!: FormGroup;
   public formEmail!:FormGroup;
   public formPassword!:FormGroup;
+
+  idForUpdate:number = 0;
 
   file: File | any;
   fileSelect: any;
 
-  url: string = "http://127.0.0.1:8000/storage/images/repartidor/";
+  url: string = "http://127.0.0.1:8000/storage/images/repartidor/"; //esto no se está usando
 
 
   constructor(private repartidorS: RepartidorService,
@@ -41,6 +45,15 @@ export class RepartidorComponent implements OnInit {
       direccion:['',[Validators.required]],
       referencia:['',[Validators.required]],
       imagen:['',[Validators.required]],
+      telefono:['',[Validators.required]],
+    });
+
+    this.formUpdateRepartidor=this.formBuilder.group({
+      name: ['',[Validators.required]],
+      last_name:['',[Validators.required]],
+      cedula:['',[Validators.required]],
+      direccion:['',[Validators.required]],
+      referencia:['',[Validators.required]],
       telefono:['',[Validators.required]],
     })
 
@@ -80,6 +93,7 @@ export class RepartidorComponent implements OnInit {
 
   regresar(){
     this.isAdd = false;
+    this.isUpdate = false;
   }
 
   getFile(event: any) {
@@ -133,6 +147,59 @@ export class RepartidorComponent implements OnInit {
         console.log(err);
       }
     });
+    this.getAllRepartidores();
+  }
+
+
+  editRepartidor(id:number){
+
+    this.idForUpdate = id; 
+    
+    let repartidor = this.repartidores.find(e => e.id == id);
+
+    if(repartidor){
+      //datos normales
+      this.formUpdateRepartidor.controls['name'].setValue(repartidor?.name);
+      this.formUpdateRepartidor.controls['last_name'].setValue(repartidor?.last_name);
+      this.formUpdateRepartidor.controls['cedula'].setValue(repartidor?.cedula);
+      this.formUpdateRepartidor.controls['direccion'].setValue(repartidor?.direccion);
+      this.formUpdateRepartidor.controls['referencia'].setValue(repartidor?.referencia);
+      this.formUpdateRepartidor.controls['telefono'].setValue(repartidor?.telefono);
+
+      //email
+      this.formEmail.controls['email'].setValue(repartidor?.email);
+
+    }
+
+    /* console.log(repartidor);
+    console.log(this.formUpdateRepartidor);
+    console.log(this.formEmail); */
+
+    this.isUpdate = true;
+  }
+
+  actualizarRepartidor(){
+    if(this.formUpdateRepartidor.valid){
+      let dataU = {
+        name: this.formUpdateRepartidor.value.name,
+        last_name: this.formUpdateRepartidor.value.last_name,
+        cedula: this.formUpdateRepartidor.value.cedula,
+        direccion: this.formUpdateRepartidor.value.direccion,
+        referencia: this.formUpdateRepartidor.value.referencia,
+        telefono: this.formUpdateRepartidor.value.telefono,
+      }
+      this.repartidorS.actualizarUsuario(dataU, this.idForUpdate).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+
+    this.idForUpdate = 0;
+    this.isUpdate = false;
     this.getAllRepartidores();
   }
 

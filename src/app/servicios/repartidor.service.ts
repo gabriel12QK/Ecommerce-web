@@ -35,5 +35,9 @@ export class RepartidorService {
     return this.http.delete<any>(`${environment.urlApi}delete-usuario/${id}`);
   }
 
+  actualizarUsuario(form:any, id:number){
+    return this.http.post<any>(`${environment.urlApi}usuario-update/${id}`, form);
+  }
+
 
 }

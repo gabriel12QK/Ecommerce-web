@@ -9,7 +9,7 @@
 
     <!-- Tabla -->
 
-    <div class="row margen-tabla" *ngIf="isAdd === false">
+    <div class="row margen-tabla" *ngIf="isAdd === false && isUpdate === false">
         <div class="col-12">
           <div class="card">
             <div class="card-header  fondo-verde">
@@ -51,7 +51,7 @@
                     <td>{{r.telefono}}</td>
                     <td>{{r.direccion}}</td>
                     <td>
-                      <a class="btn btn-primary">
+                      <a class="btn btn-primary" (click)="editRepartidor(r.id)">
                         <i class="fas fa-solid fa-pen"></i>
                       </a>
                       <a class="btn btn-danger mx-1" (click)="deleteRepartidor(r.id)">
@@ -174,6 +174,87 @@
             </div>
               
           </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+
+    <!-- Formulario actualizar repartidor -->
+
+    <div class="margen-tabla card mt-5" ><!-- *ngIf="isUpdate === true" -->
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar la información de un repartidor</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formUpdateRepartidor" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="actualizarRepartidor()"><b>Actualizar</b></a>
+            </div>
+              
+          </form>
+
+          
       </div>
       <!-- /.card-body -->
 
