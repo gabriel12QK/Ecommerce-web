@@ -24,6 +24,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
 import { RepartidorComponent } from './components/repartidor/repartidor.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { RepartidorComponent } from './components/repartidor/repartidor.componen
     PerfilComponent,
     PipePedidoPipe,
     RepartidorComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,

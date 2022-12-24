@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../servicios/usuario.service';
 import { ResRespartidorInterface } from './../../interfaces/resRepartidorInterface';
 import { repartidorInterface } from './../../interfaces/repartidorInterface';
 import { PerfilService } from './../../servicios/perfil.service';
@@ -5,13 +6,12 @@ import { Component, OnInit } from '@angular/core';
 import { RepartidorService } from './../../servicios/repartidor.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-
 @Component({
-  selector: 'app-repartidor',
-  templateUrl: './repartidor.component.html',
-  styleUrls: ['./repartidor.component.css']
+  selector: 'app-usuarios',
+  templateUrl: './usuarios.component.html',
+  styleUrls: ['./usuarios.component.css']
 })
-export class RepartidorComponent implements OnInit {
+export class UsuariosComponent implements OnInit {
 
   repartidores: ResRespartidorInterface[] = [];
 
@@ -29,54 +29,52 @@ export class RepartidorComponent implements OnInit {
   fileSelect: any;
 
   url: string = "http://127.0.0.1:8000/storage/images/repartidor/"; //esto no se está usando
-
-
+  
   constructor(private repartidorS: RepartidorService,
-              private perfilS: PerfilService,
-              private formBuilder: FormBuilder) 
-  {
-    
-    this.formRepartidor=this.formBuilder.group({
-      name: ['',[Validators.required]],
-      last_name:['',[Validators.required]],
-      email:['',[Validators.required]],
-      password:['',[Validators.required]],
-      cedula:['',[Validators.required]],
-      direccion:['',[Validators.required]],
-      referencia:['',[Validators.required]],
-      imagen:['',[Validators.required]],
-      telefono:['',[Validators.required]],
-    });
+    private perfilS: PerfilService,
+    private usuarioS: UsuarioService, 
+    private formBuilder: FormBuilder) 
+{
 
-    this.formUpdateRepartidor=this.formBuilder.group({
-      name: ['',[Validators.required]],
-      last_name:['',[Validators.required]],
-      cedula:['',[Validators.required]],
-      direccion:['',[Validators.required]],
-      referencia:['',[Validators.required]],
-      telefono:['',[Validators.required]],
-    })
+this.formRepartidor=this.formBuilder.group({
+name: ['',[Validators.required]],
+last_name:['',[Validators.required]],
+email:['',[Validators.required]],
+password:['',[Validators.required]],
+cedula:['',[Validators.required]],
+direccion:['',[Validators.required]],
+referencia:['',[Validators.required]],
+imagen:['',[Validators.required]],
+telefono:['',[Validators.required]],
+});
 
-    //en caso de que se necesite editar solo eso
-    this.formEmail = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
-    });
+this.formUpdateRepartidor=this.formBuilder.group({
+name: ['',[Validators.required]],
+last_name:['',[Validators.required]],
+cedula:['',[Validators.required]],
+direccion:['',[Validators.required]],
+referencia:['',[Validators.required]],
+telefono:['',[Validators.required]],
+})
 
-    this.formPassword= this.formBuilder.group({
-      password: ['', [Validators.required]]
-    });
-  }
+//en caso de que se necesite editar solo eso
+this.formEmail = this.formBuilder.group({
+email: ['', [Validators.required, Validators.email]]
+});
+
+this.formPassword= this.formBuilder.group({
+password: ['', [Validators.required]]
+});
+}
 
   ngOnInit(): void {
 
-    this.getAllRepartidores();
+    this.getAllUsuarios();
 
   }
 
-
-
-  getAllRepartidores(){
-    this.repartidorS.getAllRepartidores().subscribe({
+  getAllUsuarios(){
+    this.usuarioS.getAllUsuarios().subscribe({
       next: (res) => {
         console.log(res);
         this.repartidores = res;
@@ -120,7 +118,7 @@ export class RepartidorComponent implements OnInit {
       }
 
       if(this.formRepartidor.valid){
-        this.repartidorS.registroRepartidor(data).subscribe({
+        this.usuarioS.registroUsuario(data).subscribe({
           next: (res) => {
             console.log(res);
           },
@@ -128,7 +126,7 @@ export class RepartidorComponent implements OnInit {
             console.error(err);
           }
         });
-        this.getAllRepartidores();
+        this.getAllUsuarios();
         this.isAdd = false;
       } else {
         this.formRepartidor.markAllAsTouched();
@@ -149,7 +147,7 @@ export class RepartidorComponent implements OnInit {
         console.log(err);
       }
     });
-    this.getAllRepartidores();
+    this.getAllUsuarios();
   }
 
 
@@ -202,7 +200,7 @@ export class RepartidorComponent implements OnInit {
 
     this.idForUpdate = 0;
     this.isUpdate = false;
-    this.getAllRepartidores();
+    this.getAllUsuarios();
   }
 
 
@@ -213,7 +211,7 @@ export class RepartidorComponent implements OnInit {
         next: (res) => (console.log(res)),
         error: (err) => (console.log(err))
       });
-      this.getAllRepartidores();
+      this.getAllUsuarios();
       this.isUpdate = false;
     }else{
       this.formEmail.markAllAsTouched();
@@ -226,7 +224,7 @@ export class RepartidorComponent implements OnInit {
         next: (res) => (console.log(res)),
         error: (err) => (console.log(err))
       });
-      this.getAllRepartidores();
+      this.getAllUsuarios();
       this.isUpdate = false;
     }else{
       this.formPassword.markAllAsTouched();
