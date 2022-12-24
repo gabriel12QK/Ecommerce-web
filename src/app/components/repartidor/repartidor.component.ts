@@ -205,15 +205,14 @@ export class RepartidorComponent implements OnInit {
 
 
 
-  /* editarEmail(formE:any){
+  editarEmail(formE:any){
     if(this.formEmail.valid){
-      this.perfilS.editUserEmail(formE, this.id).subscribe({
+      this.perfilS.editUserEmail(formE, this.idForUpdate).subscribe({
         next: (res) => (console.log(res)),
         error: (err) => (console.log(err))
       });
-      this.getPerfil(this.id);
-      localStorage.setItem('email', formE.email);
-      this.isEdited = true;
+      this.getAllRepartidores();
+      this.isUpdate = false;
     }else{
       this.formEmail.markAllAsTouched();
     }
@@ -221,16 +220,15 @@ export class RepartidorComponent implements OnInit {
 
   editarPassword(formP:any){
     if(this.formPassword.valid){
-      this.perfilS.editPassword(formP, this.id).subscribe({
+      this.perfilS.editPassword(formP, this.idForUpdate).subscribe({
         next: (res) => (console.log(res)),
         error: (err) => (console.log(err))
       });
-      this.getPerfil(this.id);
-      localStorage.setItem('email', formP.email);
-      this.isEdited = true;
+      this.getAllRepartidores();
+      this.isUpdate = false;
     }else{
       this.formPassword.markAllAsTouched();
     }
-  } */
+  }
 
 }

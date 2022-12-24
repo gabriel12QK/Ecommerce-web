@@ -185,7 +185,7 @@
 
     <!-- Formulario actualizar repartidor -->
 
-    <div class="margen-tabla card mt-5" ><!-- *ngIf="isUpdate === true" -->
+    <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
       <div class="colores-form card-header">
         <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar la información de un repartidor</h3>
       </div>
@@ -247,12 +247,61 @@
               </div>
             </div>
             
-            <div class="d-flex justify-content-between">
-              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
-              <a class="boton-color boton-editar btn" (click)="actualizarRepartidor()"><b>Actualizar</b></a>
+            <div class="d-flex justify-content-end">
+              <a class="boton-color boton-editar btn" (click)="actualizarRepartidor()"><b>Actualizar datos</b></a>
             </div>
               
           </form>
+
+          <div class="row mt-5">
+            <div class="col-6">
+              <form [formGroup]="formEmail" action="" class="formulario">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                  <br>
+                </div>
+    
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['required']">
+                    Campo requerido
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['email']">
+                    Email requerido
+                </div>
+    
+                <div class="d-flex justify-content-between mt-3">
+                  <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+                  <a class="boton-color boton-editar btn" (click)="editarEmail(formEmail.value)"><b>Actualizar email</b></a>
+                </div>
+                
+              </form>
+            </div>
+            <div class="col-6">
+              <form action="" [formGroup]="formPassword">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                </div>
+    
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formPassword.get('password')?.touched && formPassword.get('password')?.errors?.['required']">
+                    Campo requerido
+                </div>
+    
+                <div class="d-flex justify-content-end mt-3">
+                    <a class="boton-color btn" (click)="editarPassword(formPassword.value)"><b>Actualizar contraseña</b></a>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        
 
           
       </div>
