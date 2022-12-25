@@ -14,7 +14,6 @@ import { BreadcrumbsComponent } from './plantilla/breadcrumbs/breadcrumbs.compon
 import { SidebarComponent } from './plantilla/sidebar/sidebar.component';
 import { FooterComponent } from './plantilla/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { PageComponent } from './components/page.component';
 import { CardComponent } from './plantilla/card/card.component';
 import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
 import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.component';
@@ -37,7 +36,6 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     SidebarComponent,
     FooterComponent,
     HomeComponent,
-    PageComponent,
     CardComponent,
     CardbodyComponent,
     VerPedidosComponent,
