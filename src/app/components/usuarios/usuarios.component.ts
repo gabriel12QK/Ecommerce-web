@@ -13,13 +13,13 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class UsuariosComponent implements OnInit {
 
-  repartidores: ResRespartidorInterface[] = [];
+  usuarios: ResRespartidorInterface[] = [];
 
   isAdd:boolean = false;
   isUpdate:boolean = false;
 
-  public formRepartidor!: FormGroup;
-  public formUpdateRepartidor!: FormGroup;
+  public formUsuario!: FormGroup;
+  public formUpdateUsuario!: FormGroup;
   public formEmail!:FormGroup;
   public formPassword!:FormGroup;
 
@@ -36,7 +36,7 @@ export class UsuariosComponent implements OnInit {
     private formBuilder: FormBuilder) 
 {
 
-this.formRepartidor=this.formBuilder.group({
+this.formUsuario=this.formBuilder.group({
 name: ['',[Validators.required]],
 last_name:['',[Validators.required]],
 email:['',[Validators.required]],
@@ -48,7 +48,7 @@ imagen:['',[Validators.required]],
 telefono:['',[Validators.required]],
 });
 
-this.formUpdateRepartidor=this.formBuilder.group({
+this.formUpdateUsuario=this.formBuilder.group({
 name: ['',[Validators.required]],
 last_name:['',[Validators.required]],
 cedula:['',[Validators.required]],
@@ -77,7 +77,7 @@ password: ['', [Validators.required]]
     this.usuarioS.getAllUsuarios().subscribe({
       next: (res) => {
         console.log(res);
-        this.repartidores = res;
+        this.usuarios = res;
       }, 
       error: (err) => {
         console.error(err);
@@ -85,7 +85,7 @@ password: ['', [Validators.required]]
     });
   }
 
-  agregarRepartidor(){
+  agregarUsuario(){
     this.isAdd = true;
   }
 
@@ -98,26 +98,26 @@ password: ['', [Validators.required]]
     this.file = event.target.files[0];
   }
 
-  storeRepartidor(){
+  storeUsuario(){
 
-    /* console.log(this.formRepartidor, this.file); */
+    /* console.log(this.formUsuario, this.file); */
 
     if(this.file){
-      this.formRepartidor.controls['imagen'].setValue(this.file.name);
+      this.formUsuario.controls['imagen'].setValue(this.file.name);
 
       let data:repartidorInterface = {
-        name: this.formRepartidor.value.name,
-        last_name: this.formRepartidor.value.last_name,
-        email: this.formRepartidor.value.email,
-        password: this.formRepartidor.value.password,
-        cedula: this.formRepartidor.value.cedula,
-        direccion: this.formRepartidor.value.direccion,
-        referencia: this.formRepartidor.value.referencia,
-        telefono: this.formRepartidor.value.telefono,
+        name: this.formUsuario.value.name,
+        last_name: this.formUsuario.value.last_name,
+        email: this.formUsuario.value.email,
+        password: this.formUsuario.value.password,
+        cedula: this.formUsuario.value.cedula,
+        direccion: this.formUsuario.value.direccion,
+        referencia: this.formUsuario.value.referencia,
+        telefono: this.formUsuario.value.telefono,
         imagen: this.file,
       }
 
-      if(this.formRepartidor.valid){
+      if(this.formUsuario.valid){
         this.usuarioS.registroUsuario(data).subscribe({
           next: (res) => {
             console.log(res);
@@ -129,7 +129,7 @@ password: ['', [Validators.required]]
         this.getAllUsuarios();
         this.isAdd = false;
       } else {
-        this.formRepartidor.markAllAsTouched();
+        this.formUsuario.markAllAsTouched();
       }
 
     } else {
@@ -138,7 +138,7 @@ password: ['', [Validators.required]]
   }
 
 
-  deleteRepartidor(id:any){
+  deleteUsuario(id:any){
     this.repartidorS.eliminarUsuario(id).subscribe({
       next: (res) => {
         console.log(res);
@@ -151,20 +151,20 @@ password: ['', [Validators.required]]
   }
 
 
-  editRepartidor(id:number){
+  editUsuario(id:number){
 
     this.idForUpdate = id; 
     
-    let repartidor = this.repartidores.find(e => e.id == id);
+    let repartidor = this.usuarios.find(e => e.id == id);
 
     if(repartidor){
       //datos normales
-      this.formUpdateRepartidor.controls['name'].setValue(repartidor?.name);
-      this.formUpdateRepartidor.controls['last_name'].setValue(repartidor?.last_name);
-      this.formUpdateRepartidor.controls['cedula'].setValue(repartidor?.cedula);
-      this.formUpdateRepartidor.controls['direccion'].setValue(repartidor?.direccion);
-      this.formUpdateRepartidor.controls['referencia'].setValue(repartidor?.referencia);
-      this.formUpdateRepartidor.controls['telefono'].setValue(repartidor?.telefono);
+      this.formUpdateUsuario.controls['name'].setValue(repartidor?.name);
+      this.formUpdateUsuario.controls['last_name'].setValue(repartidor?.last_name);
+      this.formUpdateUsuario.controls['cedula'].setValue(repartidor?.cedula);
+      this.formUpdateUsuario.controls['direccion'].setValue(repartidor?.direccion);
+      this.formUpdateUsuario.controls['referencia'].setValue(repartidor?.referencia);
+      this.formUpdateUsuario.controls['telefono'].setValue(repartidor?.telefono);
 
       //email
       this.formEmail.controls['email'].setValue(repartidor?.email);
@@ -172,21 +172,21 @@ password: ['', [Validators.required]]
     }
 
     /* console.log(repartidor);
-    console.log(this.formUpdateRepartidor);
+    console.log(this.formUpdateUsuario);
     console.log(this.formEmail); */
 
     this.isUpdate = true;
   }
 
-  actualizarRepartidor(){
-    if(this.formUpdateRepartidor.valid){
+  actualizarUsuario(){
+    if(this.formUpdateUsuario.valid){
       let dataU = {
-        name: this.formUpdateRepartidor.value.name,
-        last_name: this.formUpdateRepartidor.value.last_name,
-        cedula: this.formUpdateRepartidor.value.cedula,
-        direccion: this.formUpdateRepartidor.value.direccion,
-        referencia: this.formUpdateRepartidor.value.referencia,
-        telefono: this.formUpdateRepartidor.value.telefono,
+        name: this.formUpdateUsuario.value.name,
+        last_name: this.formUpdateUsuario.value.last_name,
+        cedula: this.formUpdateUsuario.value.cedula,
+        direccion: this.formUpdateUsuario.value.direccion,
+        referencia: this.formUpdateUsuario.value.referencia,
+        telefono: this.formUpdateUsuario.value.telefono,
       }
       this.repartidorS.actualizarUsuario(dataU, this.idForUpdate).subscribe({
         next: (res) => {
