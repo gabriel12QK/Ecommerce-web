@@ -12,7 +12,7 @@ export class PromocionesService {
 
   
   getPromocion(){
-    return this.http.get<IngresoPromocion[]>(`${environment.urlApi}promocion`)
+    return this.http.get<IngresoPromocion[]>(`${environment.urlApi}promocion-producto`)
   }
 
   
@@ -28,20 +28,20 @@ export class PromocionesService {
     data.append('id_producto',form.estado.toString());
 
  
-    return this.http.post<any>(`${environment.urlApi}promocion`,data)
+    return this.http.post<any>(`${environment.urlApi}promocion-producto`,data)
   }
 
 
   updatePromocion(form:any):Observable<any>{
     console.log(form);
-    return this.http.put<any>(`${environment.urlApi}promocion/${form.id}`,form)
+    return this.http.put<any>(`${environment.urlApi}promocion-producto/${form.id}`,form)
   }
 
 
   destroyPromocion(id:number){
     console.log(id);   
     debugger
-    return this.http.delete<any>(`${environment.urlApi}promocion/${id}`)
+    return this.http.delete<any>(`${environment.urlApi}promocion-producto/${id}`)
   }
 
 
