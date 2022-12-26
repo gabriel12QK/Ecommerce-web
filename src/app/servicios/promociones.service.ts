@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, observable } from 'rxjs';
-import { IngresoPromocion } from '../interfaces/ingreso-promocion';
+
+import { IngresoPromocion } from '../interfaces/ingresoPromocion';
+import { ResIngresoPromocion  } from '../interfaces/ResIngresoPromocion';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +14,7 @@ export class PromocionesService {
 
   
   getPromocion(){
-    return this.http.get<IngresoPromocion[]>(`${environment.urlApi}promocion-producto`)
+    return this.http.get<ResIngresoPromocion []>(`${environment.urlApi}promocion-producto`)
   }
 
   
@@ -22,10 +24,9 @@ export class PromocionesService {
     let data=new FormData()
     data.append('stock',form.stock.toString())
     data.append('descuento',form.descuento.toString())
-    data.append('fecha_inicio',form.fecha_inicio.toDateString())
-    data.append('fecha_fin',form.fecha_fin.toDateString())
-    data.append('estado',form.estado.toString());
-    data.append('id_producto',form.estado.toString());
+    data.append('fecha_inicio',form.fecha_inicio.toString())
+    data.append('fecha_fin',form.fecha_fin.toString())
+    data.append('id_producto',form.id_producto.toString());
 
  
     return this.http.post<any>(`${environment.urlApi}promocion-producto`,data)

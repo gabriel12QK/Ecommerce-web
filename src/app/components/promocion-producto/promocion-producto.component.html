@@ -23,6 +23,8 @@
             Campo Requerido
             </div>
         </div>
+
+
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">Stock</label>
@@ -34,6 +36,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">Descuento</label>
@@ -45,18 +49,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Estado</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese Estado"
-                    formControlName="estado" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('estado')?.touched && form.get('estado')?.errors?.['required'] ">
-                    Campo Requerido
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
+        
+
+         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">Fecha de Inicio</label>
                 <input type="date" id="fecha_inicio"  class="form-control form-control-md" placeholder="selecionar fecha"
@@ -67,6 +62,8 @@
                 </div>
             </div>
         </div>
+
+
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">Fecha de Fin</label>
@@ -77,8 +74,8 @@
                     Campo Requerido
                 </div>
             </div>
-        </div>
-        
+        </div> 
+         
       
         
         <div class="col-12 col-md-3">
@@ -97,7 +94,6 @@
                     <th scope="col">Descuento</th>
                     <th scope="col">Fecha_inicio</th>
                     <th scope="col">Fecha_fin</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Id_producto</th>
                     <th class="text-center" scope="col">Acciones</th>
                 </tr>
@@ -105,12 +101,11 @@
 
             <tbody>
                 <tr *ngFor="let item of promocion index as i">
-                    <td>{{i}}</td>
-                    <td>{{item.stock}</td>
-                    <td>{{item.descuento}</td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.stock}}</td>
+                    <td>{{item.descuento}}</td>
                     <td>{{item.fecha_inicio}}</td>
-                    <td>{{item.fecha_fin}}</td>
-                    <td>{{item.estado}</td>
+                    <td>{{item.fecha_fin}}</td> 
                     <td>{{item.id_producto}}</td>
                     
                     <td>
@@ -119,7 +114,7 @@
                             </button>
 
 
-                            <button class="btn btn-danger" (click)="destroy(form.value)">Eliminar
+                            <button class="btn btn-danger" (click)="destroy(item.id)">Eliminar
                             </button>
                         </div>
 

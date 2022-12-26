@@ -46,7 +46,7 @@ const routes: Routes = [
     component: PerfilComponent
   },
   {
-    path: 'promocion_producto',
+    path: 'promocion-producto',
     component:PromocionProductoComponent
   },
   {

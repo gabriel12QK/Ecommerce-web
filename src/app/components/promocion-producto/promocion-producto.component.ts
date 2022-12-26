@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IngresoPromocion } from 'src/app/interfaces/ingreso-promocion';
-import { ResIngresoPromocion } from 'src/app/interfaces/res-ingreso-promocion';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { PromocionesService } from 'src/app/servicios/promociones.service';
+
+import { IngresoPromocion } from 'src/app/interfaces/ingresoPromocion';
+import { ResIngresoPromocion } from 'src/app/interfaces/ResIngresoPromocion';
 
 @Component({
   selector: 'app-promocion-producto',
@@ -12,7 +13,7 @@ import { PromocionesService } from 'src/app/servicios/promociones.service';
 })
 export class PromocionProductoComponent implements OnInit {
   button: boolean = true;
-  promocion: IngresoPromocion[] = [];
+  promocion: ResIngresoPromocion[] = [];
   producto: any = [];
   public form !: FormGroup
   isUpdate: boolean = false;
@@ -28,7 +29,6 @@ export class PromocionProductoComponent implements OnInit {
       descuento: ['', [Validators.required]],
       fecha_inicio: ['', [Validators.required]],
       fecha_fin: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
       id_producto:['',],
       
     });
@@ -57,7 +57,6 @@ export class PromocionProductoComponent implements OnInit {
       descuento: this.form.value.descuento,
       fecha_inicio: this.form.value.fecha_inicio,
       fecha_fin: this.form.value.fecha_fin,
-      estado:this.form.value.estado,
       id_producto:this.form.value.id_producto
      }
 
@@ -76,7 +75,8 @@ export class PromocionProductoComponent implements OnInit {
    
     getPromocion() {
       this.apiPromociones.getPromocion().subscribe({
-        next: (res) => {this.promocion = res; console.log(res)},
+        next: (res) => {this.promocion = res; 
+        console.log(res)},
         error: (err) => console.log(err)
       })
     }
@@ -92,7 +92,6 @@ export class PromocionProductoComponent implements OnInit {
       this.form.controls['descuento'].setValue(promo?.descuento);
       this.form.controls['fecha_inicio'].setValue(promo?.fecha_inicio);
       this.form.controls['fecha_fin'].setValue(promo?.fecha_fin);
-      this.form.controls['estado'].setValue(promo?.estado);
       this.form.controls['id_producto'].setValue(promo?.id_producto);
     }
   }

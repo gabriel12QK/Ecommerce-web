@@ -25,6 +25,7 @@ import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
 import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
 import { RepartidorComponent } from './components/repartidor/repartidor.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { UsuariosComponent } from './components/usuarios/usuarios.component';
     PromocionProductoComponent,
     RepartidorComponent,
     UsuariosComponent,
+    VerVentasComponent,
   ],
   imports: [
     BrowserModule,
