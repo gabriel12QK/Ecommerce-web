@@ -48,7 +48,8 @@ const routes: Routes = [
   {
     path: 'promocion_producto',
     component:PromocionProductoComponent
-  },{
+  },
+  {
     path: 'repartidor',
     component: RepartidorComponent
   },

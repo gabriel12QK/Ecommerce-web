@@ -36,7 +36,13 @@ export class PromocionProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiProducto.getProducto().subscribe({
-      next: (res) => (this.producto = res),
+      next: (res) => {
+        this.producto = res;
+        console.log(this.producto);
+      },
+      error: (err) => {
+        console.log(err);
+      }
     });
 
     this.getPromocion();
