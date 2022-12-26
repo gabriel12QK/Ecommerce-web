@@ -9,6 +9,7 @@ import { RegistrarUsuarioComponent } from './components/registrar-usuario/regist
 import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
 
 
 
@@ -42,7 +43,10 @@ const routes: Routes = [
     path: 'perfil',
     component: PerfilComponent
   },
-
+  {
+    path: 'promocion_producto',
+    component:PromocionProductoComponent
+  }
 
 
   //si van a poner una ruta ponganla arriba de esto

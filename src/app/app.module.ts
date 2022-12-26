@@ -23,6 +23,7 @@ import { Error404Component } from './components/error404/error404.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
+import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
     DashboardComponent,
     PerfilComponent,
     PipePedidoPipe,
+    PromocionProductoComponent,
   ],
   imports: [
     BrowserModule,
