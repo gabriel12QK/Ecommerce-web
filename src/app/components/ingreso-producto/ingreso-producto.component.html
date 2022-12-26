@@ -70,7 +70,6 @@
             <div class="form-outline form-white mb-4">
                 <label class="form-label" for="typeEmailX">Categoria</label>
                 <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
-
                     <option *ngFor="let item of categoria" value="{{item.id}}">
                         {{item.descripcion}} </option>
                 </select>
@@ -141,12 +140,9 @@
                             <button class="btn btn-info me-1" (click)="actualizar(item.id)">Editar
                             </button>
 
-
-                            <button class="btn btn-danger" (click)="destroy(form.value)">Eliminar
+                            <button class="btn btn-danger" (click)="destroy(item.id)">Eliminar
                             </button>
                         </div>
-
-
                     </td>
                 </tr>
             </tbody>

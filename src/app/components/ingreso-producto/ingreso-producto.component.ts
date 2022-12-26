@@ -107,7 +107,8 @@ export class IngresoProductoComponent implements OnInit {
 
   getProducto() {
     this.apiProducto.getProducto().subscribe({
-      next: (res) => {this.producto = res; console.log(res)},
+      next: (res) => {this.producto = res; 
+        console.log(res)},
       error: (err) => console.log(err)
     })
   }
@@ -133,7 +134,6 @@ export class IngresoProductoComponent implements OnInit {
 
   update() {
     this.apiProducto.updateProducto(this.form.value).subscribe({
-
       next: (res) => { console.log(res) ; this.getProducto() },
       error: (err) => { console.log(err) }
     });
@@ -143,7 +143,6 @@ export class IngresoProductoComponent implements OnInit {
 
 
   destroy(id: any) {
-    /*     let _id=localStorage.getItem("id") */
     this.apiProducto.destroyProducto(id).subscribe(data => (console.log(data)));
   }
 
