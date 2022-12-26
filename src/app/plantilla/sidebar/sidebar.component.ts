@@ -25,11 +25,10 @@ export class SidebarComponent implements OnInit {
 
     this.perfilS.getPerfil(_id).subscribe({
       next: (res) => {
-        console.log(res);
         this.usuario = res;
-        
       },
       error(err) {
+        console.log("Error en el componente sidebar al obtener los datos del perfil.");
         console.error(err);
       },
     });

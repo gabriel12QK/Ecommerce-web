@@ -14,7 +14,6 @@ import { BreadcrumbsComponent } from './plantilla/breadcrumbs/breadcrumbs.compon
 import { SidebarComponent } from './plantilla/sidebar/sidebar.component';
 import { FooterComponent } from './plantilla/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-import { PageComponent } from './components/page.component';
 import { CardComponent } from './plantilla/card/card.component';
 import { CardbodyComponent } from './plantilla/cardbody/cardbody.component';
 import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.component';
@@ -24,6 +23,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PipePedidoPipe } from './pipes/pipe-pedido.pipe';
 import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
+import { RepartidorComponent } from './components/repartidor/repartidor.component';
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
 
 
 @NgModule({
@@ -36,7 +37,6 @@ import { PromocionProductoComponent } from './components/promocion-producto/prom
     SidebarComponent,
     FooterComponent,
     HomeComponent,
-    PageComponent,
     CardComponent,
     CardbodyComponent,
     VerPedidosComponent,
@@ -46,6 +46,8 @@ import { PromocionProductoComponent } from './components/promocion-producto/prom
     PerfilComponent,
     PipePedidoPipe,
     PromocionProductoComponent,
+    RepartidorComponent,
+    UsuariosComponent,
   ],
   imports: [
     BrowserModule,

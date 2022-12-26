@@ -1,0 +1,320 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="fondo content-wrapper">
+    <div class="row margen-tabla">
+        <div class="col-12 boton-add">
+            <a class="boton-color btn" (click)="agregarUsuario()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-user mx-1"></i> <b class="mx-2">Agregar un usuario</b></a>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+
+    <div class="row margen-tabla" *ngIf="isAdd === false && isUpdate === false">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header  fondo-verde">
+              <h3 class="card-title"><b>Usuarios</b></h3>
+                <!-- BUSCADOR -->
+                <!-- <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 400px;">
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Cédula</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                    <!-- <th>Referencia</th> --> <!-- quitado hasta proximo aviso -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let r of usuarios">
+                    <td>{{r.id}}</td>
+                    <td>{{r.name}} {{r.last_name}}</td>
+                    <td>{{r.email}}</td>
+                    <td>{{r.cedula}}</td>
+                    <td>{{r.telefono}}</td>
+                    <td>{{r.direccion}}</td>
+                    <td>
+                      <a class="btn btn-primary" (click)="editUsuario(r.id)">
+                        <i class="fas fa-solid fa-pen"></i>
+                      </a>
+                      <a class="btn btn-danger mx-1" (click)="deleteUsuario(r.id)">
+                        <i class="fas fa-solid fa-trash"></i>
+                      </a>
+                    </td>
+                    <!-- <td>{{r.referencia}}</td>  --><!-- quitado hasta proximo aviso -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+    </div>
+
+    <!-- Formulario Ingreso Usuario-->
+
+    <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-user me-2"></i> Agregar un usuario</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formUsuario" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Contraseña"  formControlName="password">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 margen-in">
+                <div class="form-group">
+                  <!-- <label for="customFile">Custom File</label> -->
+                  <!-- <label for="formFile" class="form-label">Default file input example</label> -->
+                  <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
+
+                  <!-- <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" (change)="getFile($event)">
+                    <label class="custom-file-label" for="customFile">Elegir un archivo</label>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+                 
+
+              
+
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="storeUsuario()"><b>Guardar</b></a>
+            </div>
+              
+          </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+
+    <!-- Formulario actualizar usuario -->
+
+    <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar la información de un usuario</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formUpdateUsuario" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            
+            <div class="d-flex justify-content-end">
+              <a class="boton-color boton-editar btn" (click)="actualizarUsuario()"><b>Actualizar datos</b></a>
+            </div>
+              
+          </form>
+
+          <div class="row mt-5">
+            <div class="col-6">
+              <form [formGroup]="formEmail" action="" class="formulario">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                  <br>
+                </div>
+    
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['required']">
+                    Campo requerido
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formEmail.get('email')?.touched && formEmail.get('email')?.errors?.['email']">
+                    Email requerido
+                </div>
+    
+                <div class="d-flex justify-content-between mt-3">
+                  <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+                  <a class="boton-color boton-editar btn" (click)="editarEmail(formEmail.value)"><b>Actualizar email</b></a>
+                </div>
+                
+              </form>
+            </div>
+            <div class="col-6">
+              <form action="" [formGroup]="formPassword">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Password" formControlName="password">
+                </div>
+    
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formPassword.get('password')?.touched && formPassword.get('password')?.errors?.['required']">
+                    Campo requerido
+                </div>
+    
+                <div class="d-flex justify-content-end mt-3">
+                    <a class="boton-color btn" (click)="editarPassword(formPassword.value)"><b>Actualizar contraseña</b></a>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        
+
+          
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+    
+
+
+
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,37 @@
+body{
+    background-color: #f8f8f8;
+}
+
+.fondo-verde{
+    background-color: #59B220;
+}
+
+.fondo-naranja{
+    background-color: #F7881F;
+}
+
+.margen-tabla{
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: 100px; 
+    background-color: #f8f8f8;
+}
+
+.boton-add{
+    display: flex;
+    justify-content: right;
+}
+
+.boton-color{
+    background-color: #F7881F;
+    color: #F8F8F8;
+}
+
+.margen-in{
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.colores-form{
+    background-color: #59B220;
+}

@@ -1,3 +1,5 @@
+import { UsuariosComponent } from './components/usuarios/usuarios.component';
+import { RepartidorComponent } from './components/repartidor/repartidor.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -46,7 +48,15 @@ const routes: Routes = [
   {
     path: 'promocion_producto',
     component:PromocionProductoComponent
+  },{
+    path: 'repartidor',
+    component: RepartidorComponent
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent
   }
+
 
 
   //si van a poner una ruta ponganla arriba de esto
