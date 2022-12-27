@@ -1,4 +1,4 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <app-sidebar></app-sidebar>
 
 <div class="content-wrapper bg-dark">
@@ -10,8 +10,7 @@
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">Nombre</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese nombre del producto"
-                    formControlName="nombre" />
+                <input type="text" class="form-control form-control-md" placeholder="Ingrese nombre del producto"formControlName="nombre" />
                 <div class="alert alert-warning" role="alert"
                     *ngIf="form.get('nombre')?.touched && form.get('nombre')?.errors?.['required'] ">
                     CAMPO REQUERIDO
@@ -22,8 +21,7 @@
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4">
                 <label class="form-label" for="typePasswordX">Precio</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese El precio del producto"
-                    formControlName="precio" />
+                <input type="text" class="form-control form-control-md" placeholder="Ingrese El precio del producto"formControlName="precio" />
                 <div class="alert alert-warning" role="alert"
                     *ngIf="form.get('precio')?.touched && form.get('precio')?.errors?.['required'] ">
                     CAMPO REQUERIDO
@@ -34,8 +32,7 @@
         <div class="col-12 col-md-6">
             <div class="form-outline form-white mb-4 ">
                 <label class="form-label" for="typeEmailX">peso</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese el peso a comprar"
-                    formControlName="peso" />
+                <input type="text" class="form-control form-control-md" placeholder="Ingrese el peso a comprar"formControlName="peso" />
                 <div class="alert alert-warning" role="alert"
                     *ngIf="form.get('peso')?.touched && form.get('peso')?.errors?.['required'] ">
                     CAMPO REQUERIDO
@@ -150,5 +147,282 @@
 
 
     </div>
+</div>
+<app-footer></app-footer> -->
+
+<!-- ff -->
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="fondo content-wrapper">
+    <div class="row margen-tabla">
+        <div class="col-12 boton-add">
+            <a class="boton-color btn" (click)="agregarProducto()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un repartidor</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
+        </div>
+    </div>
+
+    <!-- Tabla -->
+
+    <div class="row margen-tabla" *ngIf="isAdd === false && isUpdate === false">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header  fondo-verde">
+              <h3 class="card-title"><b>Repartidores</b></h3>
+                <!-- BUSCADOR -->
+                <!-- <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                            <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 400px;">
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Peso</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">TipoPeso</th>
+                    <th class="text-center" scope="col">Acciones</th>
+                    <!-- <th>Referencia</th> --> <!-- quitado hasta proximo aviso -->
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of producto index as i">
+                        <td>{{item.id}}</td>
+                        <td>{{item.nombre}}</td>
+                        <td>{{item.precio}}</td>
+                        <td>{{item.peso}}</td>
+                        <td>{{item.stock}}</td>
+                        <td>
+                            <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
+                        </td>
+                        <td>{{item.categoria}}</td>
+                        <td>{{item.marca}}</td>
+                        <td>{{item.tipo_peso}}</td>
+                    <td>
+                      <a class="btn btn-primary" (click)="actualizar(item.id)">
+                        <i class="fas fa-solid fa-pen"></i>
+                      </a>
+                      <a class="btn btn-danger mx-1" (click)="destroy(item.id)">
+                        <i class="fas fa-solid fa-trash"></i>
+                      </a>
+                    </td>
+                    <!-- <td>{{r.referencia}}</td>  --><!-- quitado hasta proximo aviso -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+    </div>
+
+    <!-- Formulario Ingreso Repartidor-->
+
+    <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un repartidor</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="form" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ingrese nombre del producto"formControlName="nombre" />
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ingrese El precio del producto"formControlName="precio" />
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-at"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ingrese el peso a comprar"formControlName="peso" />
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ingrese cuanto Stock quiere"formControlName="stock" />
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend" >
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Categoria .
+                   </div>
+                    <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
+                        <option  *ngFor="let item of categoria" value="{{item.id}}">
+                        {{item.descripcion}}  </option>
+                    </select>      
+              </div>
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 margen-in">
+                <div class="form-group">
+                    <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
+                </div>
+              </div>
+            </div>
+                 
+
+              
+
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="store()"><b>Guardar</b></a>
+            </div>
+              
+          </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+
+    <!-- Formulario actualizar repartidor -->
+
+    <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar la información de un repartidor</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formActualizar" action="" class="formulario">
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
+              </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+              </div>
+              <div class="col-6 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+              </div>
+              </div>
+            </div>
+            
+         <!--    <div class="d-flex justify-content-end">
+              <a class="boton-color boton-editar btn" (click)="actualizar()"><b>Actualizar datos</b></a>
+            </div> -->
+              
+          </form>
+
+      
+
+          
+      </div>
+  
+    </div>
+    
+
+
+
 </div>
 <app-footer></app-footer>
