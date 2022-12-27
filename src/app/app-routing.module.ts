@@ -56,17 +56,16 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent
-  }
+  },
 
 
 
   //si van a poner una ruta ponganla arriba de esto
   //esta ruta nos lleva hacia una pagina de error
-  //por ahora no se usará
-  /* {
+  {
     path: '**',
     component: Error404Component
-  }, */
+  },
   
 ];
 
