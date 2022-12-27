@@ -22,11 +22,12 @@ export class IngresoProductoComponent implements OnInit {
   marca: any = [];
   file: File | any;
   fileSelect: any;
-  public form !: FormGroup
+  public form!: FormGroup
+  public formActualizar !: FormGroup
   url: string = "http://127.0.0.1:8000/storage/images/producto/";
 
   isUpdate: boolean = false;
-
+  isAdd: boolean = false;
   constructor(
     private apiProducto: ProductoService,
     private apiCategoria: CategoriaService,
@@ -99,10 +100,20 @@ export class IngresoProductoComponent implements OnInit {
         else {
           this.form.markAllAsTouched();
         }
+       
       }
 
     }
 
+  }
+
+  agregarProducto(){
+    this.isAdd = true;
+  }
+
+  regresar(){
+    this.isAdd = false;
+    this.isUpdate = false;
   }
 
   getProducto() {
@@ -118,15 +129,15 @@ export class IngresoProductoComponent implements OnInit {
 
     let product = this.producto.find(e => e.id == id);
     if (product) {
-      this.form.controls['id'].setValue(product?.id);
-      this.form.controls['nombre'].setValue(product?.nombre);
-      this.form.controls['peso'].setValue(product?.peso);
-      this.form.controls['precio'].setValue(product?.precio);
-      this.form.controls['stock'].setValue(product?.stock);
+      this.formActualizar.controls['id'].setValue(product?.id);
+      this.formActualizar.controls['nombre'].setValue(product?.nombre);
+      this.formActualizar.controls['peso'].setValue(product?.peso);
+      this.formActualizar.controls['precio'].setValue(product?.precio);
+      this.formActualizar.controls['stock'].setValue(product?.stock);
 
-      this.form.controls['id_categoria'].setValue(product?.id_categoria);
-      this.form.controls['id_marca'].setValue(product?.id_marca);
-      this.form.controls['id_tipo_peso'].setValue(product?.id_tipo_peso);
+      this.formActualizar.controls['id_categoria'].setValue(product?.id_categoria);
+      this.formActualizar.controls['id_marca'].setValue(product?.id_marca);
+      this.formActualizar.controls['id_tipo_peso'].setValue(product?.id_tipo_peso);
 
     }
   }
