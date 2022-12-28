@@ -1,1 +1,66 @@
-<p>ver-ventas works!</p>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Tabla de Ventas</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a >Home</a></li>
+                <li class="breadcrumb-item active">Tabla de ventas</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                     <div class="card">
+                            <div class="card-header">
+                            <h3 class="card-title">Tabla de Ventas</h3>
+                            </div>
+                           <!-- /.card-header -->
+                         <div class="card-body">
+                                <table id="example1" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                        <th>Nombre</th>
+                                        <th>Last_name</th>
+                                        <th>Cedula</th>
+                                        <th>Subtotal</th>
+                                        <th>Total</th>
+                                        <th>fecha</th>
+                                        <th>Tipopago</th>
+                                        <th class="text-center" scope="col">Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let e of entregas | pipePedido:pageE">
+                                        <td>{{e.numero_pedido}}</td>
+                                        <td>{{e.fecha_venta}}</td>
+                                        <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
+                                        <td> {{e.destinatario[0].name}} {{e.destinatario[0].last_name}}</td>
+                                        <td>{{e.forma_pago}}</td>
+                                        <td>{{e.total}}</td>
+                                    </tr>
+                                </table>
+                                        <div style="margin-top: 10px;">
+                                            <button type="button" class="btn btn-success btn-sm" (click)="previousPage_entregas()">Anterior</button>
+                                        &nbsp;
+                                        <button type="button" class="btn btn-success btn-sm"(click)="nextPage_entregas()">Siguiente</button>
+                                        </div>
+                         </div>
+
+                             <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<app-footer></app-footer>

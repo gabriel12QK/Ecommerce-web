@@ -12,7 +12,7 @@ import { VerPedidosComponent } from './components/ver-pedidos/ver-pedidos.compon
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
-
+import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component';
 
 
 
@@ -56,7 +56,11 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent
-  }
+  },
+  {
+    path:'ver-ventas',
+    component:VerVentasComponent
+  },
 
 
 
