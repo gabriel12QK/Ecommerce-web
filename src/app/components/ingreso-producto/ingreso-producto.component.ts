@@ -22,6 +22,7 @@ export class IngresoProductoComponent implements OnInit {
   marca: any = [];
   file: File | any;
   fileSelect: any;
+  idActualizar: number = 0;
   public form!: FormGroup
   public formActualizar !: FormGroup
   url: string = "http://127.0.0.1:8000/storage/images/producto/";
@@ -42,6 +43,17 @@ export class IngresoProductoComponent implements OnInit {
       peso: ['', [Validators.required]],
       stock: ['', [Validators.required]],
       imagen: ['', [Validators.required]],
+      id_categoria: ['',],
+      id_marca: ['',],
+      id_tipo_peso: ['',],
+    });
+
+    this.formActualizar = this._formB.group({
+      id: [''],
+      nombre: ['', [Validators.required]],
+      precio: ['', [Validators.required]],
+      peso: ['', [Validators.required]],
+      stock: ['', [Validators.required]],
       id_categoria: ['',],
       id_marca: ['',],
       id_tipo_peso: ['',],
@@ -125,8 +137,8 @@ export class IngresoProductoComponent implements OnInit {
   }
 
   actualizar(id: number) {
-    this.isUpdate = true;
-
+      this.idActualizar=id;
+/* debugger */
     let product = this.producto.find(e => e.id == id);
     if (product) {
       this.formActualizar.controls['id'].setValue(product?.id);
@@ -139,16 +151,18 @@ export class IngresoProductoComponent implements OnInit {
       this.formActualizar.controls['id_marca'].setValue(product?.id_marca);
       this.formActualizar.controls['id_tipo_peso'].setValue(product?.id_tipo_peso);
 
+
     }
+    this.isUpdate = true;
   }
 
 
   update() {
-    this.apiProducto.updateProducto(this.form.value).subscribe({
+    this.apiProducto.updateProducto(this.formActualizar.value, this.idActualizar).subscribe({
       next: (res) => { console.log(res) ; this.getProducto() },
       error: (err) => { console.log(err) }
     });
-
+this.idActualizar=0;
   }
 
 

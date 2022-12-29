@@ -37,9 +37,10 @@ export class ProductoService {
   }
 
 
-  updateProducto(form:any):Observable<any>{
+  updateProducto(form:any, id:number):Observable<any>{
+    debugger
     console.log(form);
-    return this.http.put<any>(`${environment.urlApi}producto/${form.id}`,form)
+    return this.http.put<any>(`${environment.urlApi}producto/${id}`,form)
   }
 
 
