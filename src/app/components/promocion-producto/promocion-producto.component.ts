@@ -20,6 +20,7 @@ export class PromocionProductoComponent implements OnInit {
   isUpdate: boolean = false;
   isAdd: boolean = false;
   idActualizar: number =0;
+
    constructor(
     private _formB: FormBuilder,
     private apiPromociones: PromocionesService,
@@ -131,4 +132,6 @@ export class PromocionProductoComponent implements OnInit {
     /*     let _id=localStorage.getItem("id") */
     this.apiPromociones.destroyPromocion(id).subscribe(data => (console.log(data)));
   }
+
+ 
 }
