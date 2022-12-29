@@ -18,4 +18,11 @@ export class TipoPromocionService {
     return this.http.post<any>(`${environment.urlApi}tipo-promocion`, form)
   }
 
+  delete(id:number){
+    return this.http.delete<any>(`${environment.urlApi}tipo-promocion/${id}`)
+  }
+
+  update(form:any, id:number){
+    return this.http.put<any>(`${environment.urlApi}tipo-promocion/${id}`, form)
+  }
 }

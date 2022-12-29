@@ -107,11 +107,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Descripción"  formControlName="descripcion">
-                  <div class="alert alert-danger" role="alert" 
-                  *ngIf="formTipoPromocion.get('descripcion')?.touched && formTipoPromocion.get('descripcion')?.errors?.['required']">
-                    Campo requerido
-                  </div>
                   
+                </div>
+                <div class="alert alert-danger" role="alert" 
+                *ngIf="formTipoPromocion.get('descripcion')?.touched && formTipoPromocion.get('descripcion')?.errors?.['required']">
+                  Campo requerido
                 </div>
               </div>
             </div>

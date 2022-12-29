@@ -17,6 +17,8 @@ export class TipoPromocionComponent implements OnInit {
   isUpdate:boolean = false;
 
   public formTipoPromocion!: FormGroup;
+  
+  idForUpdate:number = 0;
 
 
   constructor(
@@ -74,19 +76,56 @@ export class TipoPromocionComponent implements OnInit {
   }
 
   update(){
+    if(this.formTipoPromocion.valid){
+      let data:TiposInterface = {
+        descripcion: this.formTipoPromocion.value.descripcion
+      }
+      this.tipoPromocionS.update(data, this.idForUpdate).subscribe({
+        next(res) {
+          console.log(res);
+        },
+        error(err) {
+          console.log(err);
+        },
+      });
+      this.idForUpdate = 0;
+      this.getAll();
+      this.isUpdate = false;
+    }else{
+      this.formTipoPromocion.markAllAsTouched();
+      console.log("Fomulario inválido.");
+    }
 
   }
 
   edit(id:number){
 
+    this.idForUpdate = id;
+
+    let tp = this.tipos_promocion.find(e => e.id == id);
+
+    if(tp){
+      this.formTipoPromocion.controls['descripcion'].setValue(tp.descripcion)
+    }
+
+    this.isUpdate = true;
+
   }
 
   delete(id:number){
-
+    this.tipoPromocionS.delete(id).subscribe({
+      next: (value) => {
+        console.log(value);
+        this.getAll();
+      }, error(err) {
+        console.log(err);
+      },
+    });
   }
 
   regresar(){
     this.isAdd = false;
+    this.isUpdate = false;
   }
 
 }
