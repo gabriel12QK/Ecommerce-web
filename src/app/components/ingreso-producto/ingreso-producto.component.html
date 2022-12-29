@@ -303,28 +303,28 @@
             <div class="row">
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Marca .
+                         </div>
+                          <select class="form-select" aria-label="Default select example" formControlName="id_marca">
+                              <option  *ngFor="let item of marca" value="{{item.id}}">
+                              {{item.descripcion}}  </option>
+                          </select> 
                 </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+                    <div class="input-group-prepend" >
+                        <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Tipopeso .
+                         </div>
+                          <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
+                              <option  *ngFor="let item of tipopeso" value="{{item.id}}">
+                              {{item.descripcion}}  </option>
+                          </select> 
               </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12 margen-in">
-                <div class="form-group">
-                    <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
-                </div>
-              </div>
-            </div>
+        
                  
 
               
@@ -354,60 +354,88 @@
       <div class="card-body">
           <form [formGroup]="formActualizar" action="" class="formulario">
             <div class="row">
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Ingrese nombre del producto"formControlName="nombre" />
                   </div>
-                  <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Ingrese El precio del producto"formControlName="precio" />
+                  </div>
                 </div>
               </div>
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
-              </div>
-              </div>
-            </div>
             <div class="row">
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-at"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Ingrese el peso a comprar"formControlName="peso" />
                   </div>
-                  <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
+                </div>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Ingrese cuanto Stock quiere"formControlName="stock" />
+                </div>
                 </div>
               </div>
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
+              <div class="row">
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
+                    </div>
+                    <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
                   </div>
-                  <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
-              </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
+                </div>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                    <div class="input-group-prepend" >
+                    <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Categoria .
+                     </div>
+                      <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
+                          <option  *ngFor="let item of categoria" value="{{item.id}}">
+                          {{item.descripcion}}  </option>
+                      </select>      
+                </div>
                 </div>
               </div>
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
+  
+  
+              <div class="row">
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend" >
+                          <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Marca .
+                           </div>
+                            <select class="form-select" aria-label="Default select example" formControlName="id_marca">
+                                <option  *ngFor="let item of marca" value="{{item.id}}">
+                                {{item.descripcion}}  </option>
+                            </select> 
                   </div>
-                  <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
+                </div>
+                <div class="col-6 margen-in">
+                  <div class="input-group mb-1">
+                      <div class="input-group-prepend" >
+                          <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Tipopeso .
+                           </div>
+                            <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
+                                <option  *ngFor="let item of tipopeso" value="{{item.id}}">
+                                {{item.descripcion}}  </option>
+                            </select> 
+                </div>
+                </div>
               </div>
-              </div>
-            </div>
-            
          <!--    <div class="d-flex justify-content-end">
               <a class="boton-color boton-editar btn" (click)="actualizar()"><b>Actualizar datos</b></a>
             </div> -->
