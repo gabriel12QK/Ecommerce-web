@@ -16,14 +16,26 @@ export class PromocionProductoComponent implements OnInit {
   promocion: ResIngresoPromocion[] = [];
   producto: any = [];
   public form !: FormGroup
+  public formActualizar !: FormGroup
   isUpdate: boolean = false;
-
+  isAdd: boolean = false;
+  idActualizar: number =0;
    constructor(
     private _formB: FormBuilder,
     private apiPromociones: PromocionesService,
     private apiProducto: ProductoService
     ) {
     this.form = this._formB.group({
+      id: [''],
+      stock: ['', [Validators.required]],
+      descuento: ['', [Validators.required]],
+      fecha_inicio: ['', [Validators.required]],
+      fecha_fin: ['', [Validators.required]],
+      id_producto:['',],
+      
+    });
+
+    this.formActualizar = this._formB.group({
       id: [''],
       stock: ['', [Validators.required]],
       descuento: ['', [Validators.required]],
@@ -70,6 +82,15 @@ export class PromocionProductoComponent implements OnInit {
           this.form.markAllAsTouched();
         }
     }
+
+    agregarPromocion(){
+      this.isAdd = true;
+    }
+  
+    regresar(){
+      this.isAdd = false;
+      this.isUpdate = false;
+    }
   
   
    
@@ -83,21 +104,23 @@ export class PromocionProductoComponent implements OnInit {
   
   
   actualizar(id: number) {
-    this.isUpdate = true;
-
+   
+    this.idActualizar=id;
+    
     let promo = this.promocion.find(e => e.id == id);
     if (promo) {
-      this.form.controls['id'].setValue(promo?.id);
-      this.form.controls['stock'].setValue(promo?.stock);
-      this.form.controls['descuento'].setValue(promo?.descuento);
-      this.form.controls['fecha_inicio'].setValue(promo?.fecha_inicio);
-      this.form.controls['fecha_fin'].setValue(promo?.fecha_fin);
-      this.form.controls['id_producto'].setValue(promo?.id_producto);
+      this.formActualizar.controls['id'].setValue(promo?.id);
+      this.formActualizar.controls['stock'].setValue(promo?.stock);
+      this.formActualizar.controls['descuento'].setValue(promo?.descuento);
+      this.formActualizar.controls['fecha_inicio'].setValue(promo?.fecha_inicio);
+      this.formActualizar.controls['fecha_fin'].setValue(promo?.fecha_fin);
+      this.formActualizar.controls['id_producto'].setValue(promo?.id_producto);
     }
+    this.isUpdate = true;
   }
   
   update() {
-    this.apiPromociones.updatePromocion(this.form.value).subscribe({
+    this.apiPromociones.updatePromocion(this.formActualizar.value, this.idActualizar).subscribe({
 
       next: (res) => { console.log(res) ; this.getPromocion() },
       error: (err) => { console.log(err) }

@@ -33,9 +33,9 @@ export class PromocionesService {
   }
 
 
-  updatePromocion(form:any):Observable<any>{
+  updatePromocion(form:any, id:number):Observable<any>{
     console.log(form);
-    return this.http.put<any>(`${environment.urlApi}promocion-producto/${form.id}`,form)
+    return this.http.put<any>(`${environment.urlApi}promocion-producto/${id}`,form)
   }
 
 
