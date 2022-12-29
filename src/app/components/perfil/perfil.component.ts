@@ -34,8 +34,9 @@ export class PerfilComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = localStorage.getItem('id');
-    console.log(this.id);
+    /* console.log(this.id); */
     this.getPerfil(this.id);
+    
 
   }
 
@@ -57,6 +58,7 @@ export class PerfilComponent implements OnInit {
   editarPerfil(){
     /* console.log("Editar perfil."); */
     this.isEdited = false;
+    this.formEmail.controls['email'].setValue(this.usuario.email);
   }
 
   editarEmail(formE:any){
@@ -70,6 +72,7 @@ export class PerfilComponent implements OnInit {
       this.isEdited = true;
     }else{
       this.formEmail.markAllAsTouched();
+      alert("Email requerido.")
     }
   }
 
