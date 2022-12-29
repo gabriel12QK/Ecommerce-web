@@ -41,8 +41,8 @@
                                         </thead>
                                         <tbody>
                                         <tr *ngFor="let e of entregas | pipePedido:pageE">
-                                        <td>{{e.numero_pedido}}</td>
-                                        <td>{{e.fecha_venta}}</td>
+                                        <td>{{e.nombre}}</td>
+                                        <td>{{e.last_name}}</td>
                                         <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
                                         <td> {{e.destinatario[0].name}} {{e.destinatario[0].last_name}}</td>
                                         <td>{{e.forma_pago}}</td>
