@@ -39,7 +39,7 @@ export class RepartidorComponent implements OnInit {
     this.formRepartidor=this.formBuilder.group({
       name: ['',[Validators.required]],
       last_name:['',[Validators.required]],
-      email:['',[Validators.required]],
+      email:['',[Validators.required, Validators.email]],
       password:['',[Validators.required]],
       cedula:['',[Validators.required]],
       direccion:['',[Validators.required]],
@@ -78,7 +78,7 @@ export class RepartidorComponent implements OnInit {
   getAllRepartidores(){
     this.repartidorS.getAllRepartidores().subscribe({
       next: (res) => {
-        console.log(res);
+        /* console.log(res); */
         this.repartidores = res;
       }, 
       error: (err) => {
@@ -89,6 +89,7 @@ export class RepartidorComponent implements OnInit {
 
   agregarRepartidor(){
     this.isAdd = true;
+    this.isUpdate = false;
   }
 
   regresar(){
@@ -130,12 +131,17 @@ export class RepartidorComponent implements OnInit {
         });
         this.getAllRepartidores();
         this.isAdd = false;
+        this.formRepartidor.reset();
+        //aqui deberia ir para resetear el input de la imagen pero al
+        //parecer se resetea solo
       } else {
         this.formRepartidor.markAllAsTouched();
       }
 
     } else {
-      console.error("La imagen es requerida.");
+      /* console.error("La imagen es requerida."); */
+      alert("La imagen es requerida.");
+      this.formRepartidor.markAllAsTouched();
     }
   }
 
@@ -215,6 +221,7 @@ export class RepartidorComponent implements OnInit {
       });
       this.getAllRepartidores();
       this.isUpdate = false;
+      this.idForUpdate = 0;
     }else{
       this.formEmail.markAllAsTouched();
     }
@@ -228,6 +235,7 @@ export class RepartidorComponent implements OnInit {
       });
       this.getAllRepartidores();
       this.isUpdate = false;
+      this.idForUpdate = 0;
     }else{
       this.formPassword.markAllAsTouched();
     }

@@ -82,9 +82,13 @@
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('name')?.touched && formRepartidor.get('name')?.errors?.['required']">
+                  Campo requerido
                 </div>
               </div>
               <div class="col-6 margen-in">
@@ -93,7 +97,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('last_name')?.touched && formRepartidor.get('last_name')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -104,6 +112,15 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Email"  formControlName="email">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('email')?.touched && formRepartidor.get('email')?.errors?.['required']">
+                  Campo requerido
+                </div>
+                <div class="alert alert-danger" role="alert"
+                    *ngIf="formRepartidor.get('email')?.touched && formRepartidor.get('email')?.errors?.['email']">
+                    Email requerido
+                </div>
+                
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -111,7 +128,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Contraseña"  formControlName="password">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('password')?.touched && formRepartidor.get('password')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -122,6 +143,10 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('cedula')?.touched && formRepartidor.get('cedula')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -129,7 +154,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('telefono')?.touched && formRepartidor.get('telefono')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -140,6 +169,10 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('referencia')?.touched && formRepartidor.get('referencia')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -147,7 +180,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formRepartidor.get('direccion')?.touched && formRepartidor.get('direccion')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -200,6 +237,10 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Nombre"  formControlName="name">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('name')?.touched && formUpdateRepartidor.get('name')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -207,7 +248,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Apellido"  formControlName="last_name">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('last_name')?.touched && formUpdateRepartidor.get('last_name')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -218,6 +263,10 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Cédula"  formControlName="cedula">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('cedula')?.touched && formUpdateRepartidor.get('cedula')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -225,7 +274,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-phone"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Teléfono"  formControlName="telefono">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('telefono')?.touched && formUpdateRepartidor.get('telefono')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="row">
@@ -236,6 +289,10 @@
                   </div>
                   <input type="text" class="form-control" placeholder="Referencia"  formControlName="referencia">
                 </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('referencia')?.touched && formUpdateRepartidor.get('referencia')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -243,7 +300,11 @@
                   <span class="input-group-text"><i class="fas fa-solid fa-house-user"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Dirección"  formControlName="direccion">
-              </div>
+                </div>
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="formUpdateRepartidor.get('direccion')?.touched && formUpdateRepartidor.get('direccion')?.errors?.['required']">
+                  Campo requerido
+                </div>
               </div>
             </div>
             
