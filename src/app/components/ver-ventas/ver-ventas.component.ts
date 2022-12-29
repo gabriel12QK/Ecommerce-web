@@ -8,22 +8,21 @@ import { VentasService } from '../../servicios/ventas.service';
 })
 export class VerVentasComponent implements OnInit {
   ordens:any
-  entregas:any
   pageE:number=0
   constructor(
     private orden:VentasService
   ) { }
 
   ngOnInit(): void {
-/*     this.showVenta() */
+     this.showVenta()
   }
 
   showVenta(){
     this.orden.ShowVenta().subscribe({
       next:(res)=>{
         this.ordens=res
-        this.entregas=this.ordens[0].entregas;
-        console.log(this.entregas);
+/*         this.entregas=this.ordens[0].entregas; */
+        console.log(this.ordens);
         //debugger
       }
     })

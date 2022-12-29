@@ -18,50 +18,48 @@
       </section>
     <section class="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                     <div class="card">
-                            <div class="card-header">
-                            <h3 class="card-title">Tabla de Ventas</h3>
-                            </div>
-                           <!-- /.card-header -->
-                         <div class="card-body">
-                                <table id="example1" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                        <th>Nombre</th>
-                                        <th>Last_name</th>
-                                        <th>Cedula</th>
-                                        <th>fecha</th>
-                                        <th>Artculo</th>
-                                        <th>Cantidad</th>
-                                        <th>Subtotal</th>
-                                        <th>Total</th>
-                                        <th>Tipopago</th>
-                                        <th class="text-center" scope="col">Acciones</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr *ngFor="let e of entregas | pipePedido:pageE">
-                                        <td>{{e.nombre}}</td>
-                                        <td>{{e.last_name}}</td>
-                                        <td>{{e.repartidor}} {{e.repartidor_lastname}}</td>
-                                        <td> {{e.destinatario[0].name}} {{e.destinatario[0].last_name}}</td>
-                                        <td>{{e.forma_pago}}</td>
-                                        <td>{{e.total}}</td>
-                                    </tr>
-                                </table>
-                                        <div style="margin-top: 10px;">
-                                            <button type="button" class="btn btn-success btn-sm" (click)="previousPage_entregas()">Anterior</button>
-                                        &nbsp;
-                                        <button type="button" class="btn btn-success btn-sm"(click)="nextPage_entregas()">Siguiente</button>
-                                        </div>
-                         </div>
-
-                             <!-- /.card-body -->
-                    </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Tabla de Ventas</h3>
                 </div>
+                    <div class="card-body">
+                      <table id="example1" class="table table-bordered table-hover">
+                          <thead>
+                              <tr>
+                              <th># Venta</th>
+                              <th>Nombre</th>
+                              <th>Last_name</th>
+                              <th>fecha</th>
+                              <th>Articulo</th>
+                              <th>Cantidad</th>
+                              <th>Subtotal</th>
+                              <th>Total</th>
+                              
+                              </tr>
+                              </thead>
+                              <tbody>
+                              <tr *ngFor="let e of ordens | pipePedido:pageE">
+                              <td>{{e.ventaId}}</td>
+                              <td>{{e.nombreArticulo}}</td>
+                              <td>{{e.apellidoComprador}}</td>
+                              <td>{{e.fechaVenta}}</td>
+                              <td>{{e.Articulo.nombreArticulo}}</td>
+                              <td>{{e.cantidad}}</td>
+                              <td>{{e.subtotal}}</td>
+                              <td>{{e.total}}</td>  
+                              </tr>
+                      </table>
+                        <div style="margin-top: 10px;">
+                          <button type="button" class="btn btn-success btn-sm" (click)="previousPage_entregas()">Anterior</button>
+                            &nbsp;
+                          <button type="button" class="btn btn-success btn-sm"(click)="nextPage_entregas()">Siguiente</button>
+                        </div>
+                    </div>
+              </div>
             </div>
+          </div>
         </div>
     </section>
 </div>
