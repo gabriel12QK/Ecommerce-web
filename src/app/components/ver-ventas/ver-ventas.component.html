@@ -42,10 +42,10 @@
                               <tbody>
                               <tr *ngFor="let e of ordens | pipePedido:pageE">
                               <td>{{e.ventaId}}</td>
-                              <td>{{e.nombreArticulo}}</td>
+                              <td>{{e.nombreComprador}}</td>
                               <td>{{e.apellidoComprador}}</td>
                               <td>{{e.fechaVenta}}</td>
-                              <td>{{e.Articulo.nombreArticulo}}</td>
+                              <td>{{e.Articulo[0].nombreArticulo}}</td>
                               <td>{{e.cantidad}}</td>
                               <td>{{e.subtotal}}</td>
                               <td>{{e.total}}</td>  
