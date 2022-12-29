@@ -26,6 +26,7 @@ import { PromocionProductoComponent } from './components/promocion-producto/prom
 import { RepartidorComponent } from './components/repartidor/repartidor.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component';
+import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-promocion.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component
     RepartidorComponent,
     UsuariosComponent,
     VerVentasComponent,
+    TipoPromocionComponent,
   ],
   imports: [
     BrowserModule,

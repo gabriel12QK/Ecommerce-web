@@ -1,3 +1,4 @@
+import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-promocion.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RepartidorComponent } from './components/repartidor/repartidor.component';
 import { NgModule } from '@angular/core';
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: 'usuarios',
     component: UsuariosComponent
+  },
+  {
+    path: 'kits/tipo-promocion',
+    component:  TipoPromocionComponent
   },
 
 

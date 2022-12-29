@@ -1,0 +1,137 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="fondo content-wrapper">
+    <div class="row margen-tabla">
+        <div class="col-12 boton-add">
+            <a class="boton-color btn" (click)="agregar()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus mx-1"></i><b class="mx-2">Agregar Tipo de Promoción</b></a>  
+        </div>
+    </div>
+
+    <!-- Tabla -->
+
+    <div class="row margen-tabla" *ngIf="isAdd === false && isUpdate === false">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header  fondo-verde">
+              <h3 class="card-title"><b>Tipos de Promociones</b></h3>
+                
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0" style="height: 350px;">
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Acciones</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let r of tipos_promocion">
+                    <td>{{r.id}}</td>
+                    <td>{{r.descripcion}}</td>
+                    
+                    <td>
+                      <a class="btn btn-primary" (click)="edit(r.id)">
+                        <i class="fas fa-solid fa-pen"></i>
+                      </a>
+                      <a class="btn btn-danger mx-1" (click)="delete(r.id)">
+                        <i class="fas fa-solid fa-trash"></i>
+                      </a>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+    </div>
+
+    <!-- Formulario Ingreso-->
+
+    <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un Tipo de Promoción</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formTipoPromocion" action="" class="formulario">
+            <div class="row">
+              <div class="col-12 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Descripción"  formControlName="descripcion">
+                </div>
+                <div class="alert alert-danger" role="alert" 
+                *ngIf="formTipoPromocion.get('descripcion')?.touched && formTipoPromocion.get('descripcion')?.errors?.['required']">
+                  Campo requerido
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="store()"><b>Guardar</b></a>
+            </div>
+              
+          </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+
+    <!-- Formulario Actualizar-->
+
+    <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
+      <div class="colores-form card-header">
+        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar un Tipo de Promoción</h3>
+      </div>
+
+      <div class="card-body">
+          <form [formGroup]="formTipoPromocion" class="formulario">
+            <div class="row">
+              <div class="col-12 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Descripción"  formControlName="descripcion">
+                  <div class="alert alert-danger" role="alert" 
+                  *ngIf="formTipoPromocion.get('descripcion')?.touched && formTipoPromocion.get('descripcion')?.errors?.['required']">
+                    Campo requerido
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
+              <a class="boton-color boton-editar btn" (click)="update()" ><b>Actualizar</b></a>
+            </div>
+              
+          </form>
+      </div>
+      <!-- /.card-body -->
+
+      <!-- <div class="card-footer">
+          usar en caso de emergencia
+      </div> -->
+  
+    </div>
+    
+
+
+</div>
+<app-footer></app-footer>
