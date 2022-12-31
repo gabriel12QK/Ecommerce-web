@@ -1,157 +1,4 @@
-<!-- <app-header></app-header>
-<app-sidebar></app-sidebar>
-
-<div class="content-wrapper bg-dark">
-    <app-breadcrumbs></app-breadcrumbs>
-    <form [formGroup]="form" class="row m-3 p-4 shadow" (submit)="store()">
-
-        <h2 class=" col-12 fw-bold mb-2 text-uppercase mt-4">Registro Producto</h2>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Nombre</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese nombre del producto"formControlName="nombre" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('nombre')?.touched && form.get('nombre')?.errors?.['required'] ">
-                    CAMPO REQUERIDO
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typePasswordX">Precio</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese El precio del producto"formControlName="precio" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('precio')?.touched && form.get('precio')?.errors?.['required'] ">
-                    CAMPO REQUERIDO
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">peso</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese el peso a comprar"formControlName="peso" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('peso')?.touched && form.get('peso')?.errors?.['required'] ">
-                    CAMPO REQUERIDO
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Stock</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese cuanto Stock quiere"
-                    formControlName="stock" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('stock')?.touched && form.get('stock')?.errors?.['required'] ">
-                    CAMPO REQUERIDO
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Imagen</label>
-                <input type="file" (change)="getFile($event)" class="form-control form-control-md" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('imagen')?.touched && form.get('imagen')?.errors?.['required'] ">
-                    CAMPO REQUERIDO
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Categoria</label>
-                <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
-                    <option *ngFor="let item of categoria" value="{{item.id}}">
-                        {{item.descripcion}} </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Marca</label>
-                <select class="form-select" aria-label="Default select example" formControlName="id_marca">
-                    <option *ngFor="let item of marca" value="{{item.id}}">
-                        {{item.descripcion}} </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Tipo de peso</label>
-                <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
-                    <option *ngFor="let item of tipopeso" value="{{item.id}}">
-                        {{item.descripcion}} </option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-3">
-            <button *ngIf="!isUpdate" (click)="store()" class="btn btn-primary w-100">Guardar</button>
-            <button *ngIf="isUpdate"  class="btn btn-info w-100">Actualizar</button>
-        </div>
-
-
-    </form>
-
-    <div class="row m-3 p-4 shadow table-responsive">
-        <table class="table table-dark table-hover p-4">
-            <thead>
-                <tr class="">
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">TipoPeso</th>
-                    <th class="text-center" scope="col">Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let item of producto index as i">
-                    <td>{{item.id}}</td>
-                    <td>{{item.nombre}}</td>
-                    <td>{{item.precio}}</td>
-                    <td>{{item.peso}}</td>
-                    <td>{{item.stock}}</td>
-                    <td>
-                        <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
-                    </td>
-                    <td>{{item.categoria}}</td>
-                    <td>{{item.marca}}</td>
-                    <td>{{item.tipo_peso}}</td>
-
-                    <td>
-                        <div class="d-flex justify-content-evenly align-items">
-                            <button class="btn btn-info me-1" (click)="actualizar(item.id)">Editar
-                            </button>
-
-                            <button class="btn btn-danger" (click)="destroy(item.id)">Eliminar
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-
-    </div>
-</div>
-<app-footer></app-footer> -->
-
-<!-- ff -->
-
+<!-- Andres quitó esto -->
 <app-header></app-header>
 <app-sidebar></app-sidebar>
 <div class="fondo content-wrapper">
@@ -194,7 +41,7 @@
                         <td>{{item.peso}}</td>
                         <td>{{item.stock}}</td>
                         <td>
-                            <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
+                          <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
                         </td>
                         <td>{{item.categoria}}</td>
                         <td>{{item.marca}}</td>
@@ -230,84 +77,81 @@
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  <span class="input-group-text"><i class="fas fa-tag"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Ingrese nombre del producto"formControlName="nombre" />
+                  <input type="text" class="form-control" placeholder="Nombre del producto"formControlName="nombre" />
                 </div>
               </div>
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                    <span class="input-group-text">$</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Ingrese El precio del producto"formControlName="precio" />
+                  <input type="text" class="form-control" placeholder="Precio" formControlName="precio">
+                  <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="row">
-              <div class="col-6 margen-in">
+              <div class="col-5 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-at"></i></span>
+                  <span class="input-group-text"><i class="fas fa-weight-hanging"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Ingrese el peso a comprar"formControlName="peso" />
+                  <input type="text" class="form-control" placeholder="Peso" formControlName="peso" />
                 </div>
               </div>
-              <div class="col-6 margen-in">
+              <div class="col-7 margen-in">
                 <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-key"></i></span>
+                  <div class="input-group-prepend" >
+                    <span class="input-group-text">Tipo de peso</span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Ingrese cuanto Stock quiere"formControlName="stock" />
-              </div>
+                    <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
+                      <option  *ngFor="let item of tipopeso" value="{{item.id}}">
+                      {{item.descripcion}}</option>
+                    </select> 
+                </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-6 margen-in">
+              <div class="col-12 margen-in">
                 <div class="input-group mb-1">
-                  <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-id-card"></i></span>
-                  </div>
                   <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
+                  <div class="input-group-append">
+                    <span class="input-group-text">Imagen</span>
+                  </div>
                 </div>
               </div>
+              
+            </div>
+
+
+            <div class="row">
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend" >
-                  <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Categoria .
-                   </div>
-                    <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
-                        <option  *ngFor="let item of categoria" value="{{item.id}}">
-                        {{item.descripcion}}  </option>
-                    </select>      
-              </div>
-              </div>
-            </div>
-
-
-            <div class="row">
-              <div class="col-6 margen-in">
-                <div class="input-group mb-1">
-                    <div class="input-group-prepend" >
-                        <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Marca .
-                         </div>
-                          <select class="form-select" aria-label="Default select example" formControlName="id_marca">
-                              <option  *ngFor="let item of marca" value="{{item.id}}">
-                              {{item.descripcion}}  </option>
-                          </select> 
+                    <span class="input-group-text">Marca</span>
+                  </div>
+                  <select class="form-select" aria-label="Default select example" formControlName="id_marca">
+                    <option  *ngFor="let item of marca" value="{{item.id}}">
+                    {{item.descripcion}}  </option>
+                  </select> 
                 </div>
               </div>
+              <!-- ------ -->
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
-                    <div class="input-group-prepend" >
-                        <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Tipopeso .
-                         </div>
-                          <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
-                              <option  *ngFor="let item of tipopeso" value="{{item.id}}">
-                              {{item.descripcion}}  </option>
-                          </select> 
-              </div>
+                  <div class="input-group-prepend" >
+                    <span class="input-group-text">Categoría</span>
+                  </div>
+                    <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
+                      <option  *ngFor="let item of categoria" value="{{item.id}}">
+                      {{item.descripcion}}  </option>
+                    </select>      
+                </div>
               </div>
             </div>
         
