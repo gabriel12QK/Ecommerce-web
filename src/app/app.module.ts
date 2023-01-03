@@ -27,6 +27,9 @@ import { RepartidorComponent } from './components/repartidor/repartidor.componen
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component';
 import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-promocion.component';
+import { MarcaComponent } from './components/marca/marca.component';
+import { CategoriaComponent } from './components/categoria/categoria.component';
+
 
 
 @NgModule({
@@ -52,6 +55,8 @@ import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-pr
     UsuariosComponent,
     VerVentasComponent,
     TipoPromocionComponent,
+    MarcaComponent,
+    CategoriaComponent,
   ],
   imports: [
     BrowserModule,
