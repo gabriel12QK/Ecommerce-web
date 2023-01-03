@@ -29,6 +29,7 @@ import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component
 import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-promocion.component';
 import { MarcaComponent } from './components/marca/marca.component';
 import { CategoriaComponent } from './components/categoria/categoria.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -57,6 +58,7 @@ import { CategoriaComponent } from './components/categoria/categoria.component';
     TipoPromocionComponent,
     MarcaComponent,
     CategoriaComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

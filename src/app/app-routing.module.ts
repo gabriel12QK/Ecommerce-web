@@ -14,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { PromocionProductoComponent } from './components/promocion-producto/promocion-producto.component';
 import { VerVentasComponent } from './components/ver-ventas/ver-ventas.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: 'kits/tipo-promocion',
     component:  TipoPromocionComponent
+  },
+  {
+    path: 'about',
+    component:  AboutComponent
   },
   
 
