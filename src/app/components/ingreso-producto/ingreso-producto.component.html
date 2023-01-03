@@ -4,7 +4,7 @@
 <div class="fondo content-wrapper">
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn" (click)="agregarProducto()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un nuevo producto</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
+            <a class="boton-color btn" (click)="agregarProducto()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <b class="mx-2">Agregar un nuevo producto</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
         </div>
     </div>
 
@@ -21,15 +21,14 @@
               <table class="table table-head-fixed text-nowrap">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Precio</th>
-                    <th scope="col">Peso</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Imagen</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">TipoPeso</th>
+                    <th class="text-center" scope="col">#</th>
+                    <th class="text-center" scope="col">Nombre</th>
+                    <th class="text-center" scope="col">Precio</th>
+                    <th class="text-center" scope="col">Peso</th>
+                    <th class="text-center" scope="col">Stock</th>
+                    <th class="text-center" scope="col">Imagen</th>
+                    <th class="text-center" scope="col">Categoria</th>
+                    <th class="text-center" scope="col">Marca</th>
                     <th class="text-center" scope="col">Acciones</th>
                   </tr>
                 </thead>
@@ -38,14 +37,13 @@
                         <td>{{item.id}}</td>
                         <td>{{item.nombre}}</td>
                         <td>{{item.precio}}</td>
-                        <td>{{item.peso}}</td>
+                        <td>{{item.peso}} {{item.tipo_peso}}</td>
                         <td>{{item.stock}}</td>
                         <td>
                           <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
                         </td>
                         <td>{{item.categoria}}</td>
                         <td>{{item.marca}}</td>
-                        <td>{{item.tipo_peso}}</td>
                     <td>
                       <a class="btn btn-primary" (click)="actualizar(item.id)">
                         <i class="fas fa-solid fa-pen"></i>
@@ -66,23 +64,30 @@
 
     <!-- Formulario Ingreso Repartidor-->
 
-    <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
+    <div class="margen-tabla card mt-5" *ngIf="isAdd === true"><!--  -->
       <div class="colores-form card-header">
-        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un Producto</h3>
+        <h3 class="texto card-title"><i class="fas fa-solid fa-plus me-2"></i> Agregar un producto</h3>
       </div>
 
       <div class="card-body">
           <form [formGroup]="form" action="" class="formulario">
             <div class="row">
-              <div class="col-6 margen-in">
+              <div class="col-12 margen-in d-flex justify-content-center">
+                <input class="d-none" #imageInput type="file"  (change)="getFile($event)"> <!-- class="d-none" para que desaparesca -->
+                <img (click)="imageInput.click()" style="max-width:10rem; max-height: 10rem; overflow: hidden;" [src]="fileSelect|| '../../../assets/img/no-image.png'" alt="Imagen producto.">
+              </div>
+              
+            </div>
+            <div class="row">
+              <div class="col-4 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-tag"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Nombre del producto"formControlName="nombre" />
+                  <input type="text" class="form-control" placeholder="Nombre del producto" formControlName="nombre" />
                 </div>
               </div>
-              <div class="col-6 margen-in">
+              <div class="col-4 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
@@ -91,6 +96,17 @@
                   <div class="input-group-append">
                     <span class="input-group-text">.00</span>
                   </div>
+                </div>
+              </div>
+              <div class="col-4 margen-in">
+                <div class="input-group mb-1">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-solid fa-box"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Stock" formControlName="stock">
+                  <!-- <div class="input-group-append">
+                    <span class="input-group-text">.00</span>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -116,19 +132,7 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-12 margen-in">
-                <div class="input-group mb-1">
-                  <input class="form-control" type="file" id="formFile" (change)="getFile($event)">
-                  <div class="input-group-append">
-                    <span class="input-group-text">Imagen</span>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-
-
+            
             <div class="row">
               <div class="col-6 margen-in">
                 <div class="input-group mb-1">
@@ -155,11 +159,9 @@
               </div>
             </div>
         
-                 
 
-              
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-5">
               <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
               <a class="boton-color boton-editar btn" (click)="store()"><b>Guardar</b></a>
             </div>
@@ -224,7 +226,7 @@
                 <div class="col-6 margen-in">
                   <div class="input-group mb-1">
                       <div class="input-group-prepend" >
-                          <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Marca .
+                          <span class="input-group-text">Marca</span>
                            </div>
                             <select class="form-select" aria-label="Default select example" formControlName="id_marca">
                                 <option  *ngFor="let item of marca" value="{{item.id}}">
@@ -235,7 +237,7 @@
                 <div class="col-6 margen-in">
                   <div class="input-group mb-1">
                       <div class="input-group-prepend" >
-                          <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Tipopeso .
+                          <span class="input-group-text">Tipo de peso</span>
                            </div>
                             <select class="form-select" aria-label="Default select example" formControlName="id_tipo_peso">
                                 <option  *ngFor="let item of tipopeso" value="{{item.id}}">
@@ -257,7 +259,7 @@
                 <div class="col-6 margen-in">
                   <div class="input-group mb-1">
                     <div class="input-group-prepend" >
-                    <span class="input-group-text"><i class="fas fa-solid fa-phone"  > </i></span> Categoria .
+                    <span class="input-group-text">Categoría</span>
                      </div>
                       <select class="form-select" aria-label="Default select example" formControlName="id_categoria">
                           <option  *ngFor="let item of categoria" value="{{item.id}}">
@@ -270,7 +272,9 @@
   
              
 
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-between">
+              
+              <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
               <a class="boton-color boton-editar btn" (click)="update()"><b>Actualizar datos</b></a>
             </div> 
               

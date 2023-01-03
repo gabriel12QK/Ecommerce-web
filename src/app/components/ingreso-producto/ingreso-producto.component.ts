@@ -78,17 +78,24 @@ export class IngresoProductoComponent implements OnInit {
   }
 
   getFile(event: any) {
-    this.file = event.target.files[0];
+    const file1 = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file1);
+    reader.onloadend = () => {
+      this.fileSelect = reader.result;
+    }
+    this.file = (event.target).files[0];
   }
 
   store() {
-
+    debugger
     if (this.isUpdate) {
       this.update();
-
+      debugger
     } else {
+      debugger
       if (this.file) {
-
+        debugger
         this.form.controls['imagen'].setValue(this.file.name);
 
         let data: IngresoProducto = {
@@ -108,9 +115,13 @@ export class IngresoProductoComponent implements OnInit {
             next: (res) => (console.log(res)),
             error: (err) => (console.log(err)),
           });
+          this.isAdd = false;
+          this.getProducto();
+          this.form.reset();
         }
         else {
           this.form.markAllAsTouched();
+          alert("Formulario inválido.")
         }
        
       }
@@ -137,10 +148,13 @@ export class IngresoProductoComponent implements OnInit {
   }
 
   actualizar(id: number) {
-      this.idActualizar=id;
-/* debugger */
+
+    this.idActualizar = id;
+
     let product = this.producto.find(e => e.id == id);
+
     if (product) {
+
       this.formActualizar.controls['id'].setValue(product?.id);
       this.formActualizar.controls['nombre'].setValue(product?.nombre);
       this.formActualizar.controls['peso'].setValue(product?.peso);
@@ -150,7 +164,6 @@ export class IngresoProductoComponent implements OnInit {
       this.formActualizar.controls['id_categoria'].setValue(product?.id_categoria);
       this.formActualizar.controls['id_marca'].setValue(product?.id_marca);
       this.formActualizar.controls['id_tipo_peso'].setValue(product?.id_tipo_peso);
-
 
     }
     this.isUpdate = true;
@@ -162,7 +175,10 @@ export class IngresoProductoComponent implements OnInit {
       next: (res) => { console.log(res) ; this.getProducto() },
       error: (err) => { console.log(err) }
     });
-this.idActualizar=0;
+    this.idActualizar = 0;
+    this.getProducto();
+    this.isUpdate = false;
+    this.formActualizar.reset();
   }
 
 
