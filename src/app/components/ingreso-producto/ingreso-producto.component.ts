@@ -118,6 +118,7 @@ export class IngresoProductoComponent implements OnInit {
           this.isAdd = false;
           this.getProducto();
           this.form.reset();
+          this.fileSelect = null;
         }
         else {
           this.form.markAllAsTouched();

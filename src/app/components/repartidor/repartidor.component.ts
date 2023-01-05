@@ -98,7 +98,13 @@ export class RepartidorComponent implements OnInit {
   }
 
   getFile(event: any) {
-    this.file = event.target.files[0];
+    const file1 = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file1);
+    reader.onloadend = () => {
+      this.fileSelect = reader.result;
+    }
+    this.file = (event.target).files[0];
   }
 
   storeRepartidor(){
@@ -132,10 +138,14 @@ export class RepartidorComponent implements OnInit {
         this.getAllRepartidores();
         this.isAdd = false;
         this.formRepartidor.reset();
+        //console.log(this.fileSelect);
         //aqui deberia ir para resetear el input de la imagen pero al
         //parecer se resetea solo
+        this.fileSelect = null;
+        //console.log(this.fileSelect, "despues del null");
       } else {
         this.formRepartidor.markAllAsTouched();
+        this.getAllRepartidores();
       }
 
     } else {
