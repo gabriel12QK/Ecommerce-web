@@ -88,14 +88,14 @@ export class IngresoProductoComponent implements OnInit {
   }
 
   store() {
-    debugger
+    
     if (this.isUpdate) {
       this.update();
-      debugger
+      
     } else {
-      debugger
+      
       if (this.file) {
-        debugger
+        
         this.form.controls['imagen'].setValue(this.file.name);
 
         let data: IngresoProducto = {
@@ -125,6 +125,9 @@ export class IngresoProductoComponent implements OnInit {
           alert("Formulario inválido.")
         }
        
+      } else {
+        alert("La imagen es requerida.");
+        this.form.markAllAsTouched();
       }
 
     }
@@ -133,6 +136,7 @@ export class IngresoProductoComponent implements OnInit {
 
   agregarProducto(){
     this.isAdd = true;
+    this.isUpdate = false;
   }
 
   regresar(){
@@ -168,18 +172,24 @@ export class IngresoProductoComponent implements OnInit {
 
     }
     this.isUpdate = true;
+    this.isAdd = false;
   }
 
 
   update() {
-    this.apiProducto.updateProducto(this.formActualizar.value, this.idActualizar).subscribe({
-      next: (res) => { console.log(res) ; this.getProducto() },
-      error: (err) => { console.log(err) }
-    });
-    this.idActualizar = 0;
-    this.getProducto();
-    this.isUpdate = false;
-    this.formActualizar.reset();
+    if (this.formActualizar.valid) {
+      this.apiProducto.updateProducto(this.formActualizar.value, this.idActualizar).subscribe({
+        next: (res) => { console.log(res) ; this.getProducto() },
+        error: (err) => { console.log(err) }
+      });
+      this.idActualizar = 0;
+      this.getProducto();
+      this.isUpdate = false;
+      this.formActualizar.reset();
+    } else {
+      this.formActualizar.markAllAsTouched();
+      alert("Formulario actualizar producto inválido.");
+    }
   }
 
 

@@ -145,6 +145,7 @@ export class RepartidorComponent implements OnInit {
         //console.log(this.fileSelect, "despues del null");
       } else {
         this.formRepartidor.markAllAsTouched();
+        alert("Formulario inválido.")
         this.getAllRepartidores();
       }
 
@@ -215,11 +216,18 @@ export class RepartidorComponent implements OnInit {
           console.log(err);
         }
       });
+      this.isUpdate = false;
+      this.getAllRepartidores();
+      this.idForUpdate = 0;
+    }else {
+      
+      this.formUpdateRepartidor.markAllAsTouched();
+      alert("Formulario actualizar repartidor inválido.");
+
     }
 
-    this.idForUpdate = 0;
-    this.isUpdate = false;
-    this.getAllRepartidores();
+    
+    
   }
 
 
@@ -235,6 +243,7 @@ export class RepartidorComponent implements OnInit {
       this.idForUpdate = 0;
     }else{
       this.formEmail.markAllAsTouched();
+      alert("Formulario actualizar email inválido.");
     }
   }
 
@@ -249,6 +258,7 @@ export class RepartidorComponent implements OnInit {
       this.idForUpdate = 0;
     }else{
       this.formPassword.markAllAsTouched();
+      alert("Formulario actualizar password inválido.");
     }
   }
 
