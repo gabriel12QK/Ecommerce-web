@@ -194,6 +194,7 @@ export class RepartidorComponent implements OnInit {
     console.log(this.formEmail); */
 
     this.isUpdate = true;
+    this.isAdd = false;
   }
 
   actualizarRepartidor(){

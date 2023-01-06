@@ -33,17 +33,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of producto index as i">
-                        <td>{{item.id}}</td>
-                        <td>{{item.nombre}}</td>
-                        <td>{{item.precio}}</td>
-                        <td>{{item.peso}} {{item.tipo_peso}}</td>
-                        <td>{{item.stock}}</td>
-                        <td>
+                    <tr *ngFor="let item of producto" class="text-center">
+                        <td class="align-middle">{{item.id}}</td>
+                        <td class="align-middle">{{item.nombre}}</td>
+                        <td class="align-middle">{{item.precio}}</td>
+                        <td class="align-middle">{{item.peso}} {{item.tipo_peso}}</td>
+                        <td class="align-middle">{{item.stock}}</td>
+                        <td class="align-middle">
                           <img class="img-thumbnail" [src]="url+item.id+'/'+item.imagen" />
                         </td>
-                        <td>{{item.categoria}}</td>
-                        <td>{{item.marca}}</td>
+                        <td class="align-middle">{{item.categoria}}</td>
+                        <td class="align-middle">{{item.marca}}</td>
                     <td>
                       <a class="btn btn-primary" (click)="actualizar(item.id)">
                         <i class="fas fa-solid fa-pen"></i>

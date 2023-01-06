@@ -40,3 +40,7 @@ body{
     max-width: 50px !important;
     max-height: 50px !important;
 }
+
+.tabla-cent{
+    text-align: center;
+}

@@ -3,7 +3,7 @@
 <div class="fondo content-wrapper">
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn" (click)="agregarRepartidor()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un repartidor</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
+            <a class="boton-color btn" (click)="agregarRepartidor()" *ngIf="isAdd === false && isUpdate === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar un repartidor</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
         </div>
     </div>
 
@@ -31,7 +31,7 @@
             <div class="card-body table-responsive p-0" style="height: 400px;">
               <table class="table table-head-fixed text-nowrap">
                 <thead>
-                  <tr>
+                  <tr class="tabla-cent">
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Imagen</th>
@@ -44,17 +44,17 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let r of repartidores">
-                    <td>{{r.id}}</td>
-                    <td>{{r.name}} {{r.last_name}}</td>
-                    <td>
+                  <tr *ngFor="let r of repartidores" class="tabla-cent">
+                    <td class="align-middle">{{r.id}}</td>
+                    <td class="align-middle">{{r.name}} {{r.last_name}}</td>
+                    <td class="align-middle">
                       <img [src]="url+r.id+'/'+r.imagen" alt="" class="img-w-h img-fluid img-thumbnail">
                     </td>
-                    <td>{{r.email}}</td>
-                    <td>{{r.cedula}}</td>
-                    <td>{{r.telefono}}</td>
-                    <td>{{r.direccion}}</td>
-                    <td>
+                    <td class="align-middle">{{r.email}}</td>
+                    <td class="align-middle">{{r.cedula}}</td>
+                    <td class="align-middle">{{r.telefono}}</td>
+                    <td class="align-middle">{{r.direccion}}</td>
+                    <td class="align-middle">
                       <a class="btn btn-primary" (click)="editRepartidor(r.id)">
                         <i class="fas fa-solid fa-pen"></i>
                       </a>
@@ -62,7 +62,6 @@
                         <i class="fas fa-solid fa-trash"></i>
                       </a>
                     </td>
-                    <!-- <td>{{r.referencia}}</td>  --><!-- quitado hasta proximo aviso -->
                   </tr>
                 </tbody>
               </table>
@@ -307,7 +306,7 @@
               
           </form>
 
-           <div class="row mt-5">
+           <div class="row mt-3">
             <div class="col-6">
               <form [formGroup]="formEmail" action="" class="formulario">
                 <div class="input-group mb-1">
@@ -327,7 +326,7 @@
                     Email requerido
                 </div>
     
-                <div class="d-flex justify-content-between mt-3">
+                <div class="d-flex justify-content-between mt-5">
                   <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
                   <a class="boton-color boton-editar btn" (click)="editarEmail(formEmail.value)"><b>Actualizar email</b></a>
                 </div>
@@ -348,7 +347,7 @@
                     Campo requerido
                 </div>
     
-                <div class="d-flex justify-content-end mt-3">
+                <div class="d-flex justify-content-end mt-5">
                     <a class="boton-color btn" (click)="editarPassword(formPassword.value)"><b>Actualizar contraseña</b></a>
                 </div>
               </form>
