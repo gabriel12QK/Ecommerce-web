@@ -4,7 +4,7 @@
 
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn" (click)="agregar()" *ngIf="isAdd === false && isUpdate === false"><i class="fas fa-solid fa-plus mx-1"></i><b class="mx-2">Agregar Categoría</b></a>  
+            <a class="boton-color btn" (click)="agregar()" *ngIf="isAdd === false && isUpdate === false"><i class="fas fa-solid fa-plus mx-1"></i><b class="mx-2">Agregar Marca</b></a>  
         </div>
     </div>
 
@@ -14,7 +14,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header  fondo-verde">
-              <h3 class="card-title"><b>Categorías</b></h3>
+              <h3 class="card-title"><b>Marcas</b></h3>
                 
             </div>
             <!-- /.card-header -->
@@ -62,7 +62,7 @@
 
     <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
         <div class="colores-form card-header">
-          <h3 class="texto card-title"><i class="fas fa-solid fa-plus me-2"></i> Agregar una categoría</h3>
+          <h3 class="texto card-title"><i class="fas fa-solid fa-plus me-2"></i> Agregar una marca</h3>
         </div>
   
         <div class="card-body">
@@ -108,7 +108,7 @@
   
       <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
         <div class="colores-form card-header">
-          <h3 class="texto card-title"><i class="fas fa-solid fa-pen me-2"></i> Actualizar un Tipo de Promoción</h3>
+          <h3 class="texto card-title"><i class="fas fa-solid fa-pen me-2"></i> Actualizar una marca</h3>
         </div>
   
         <div class="card-body">
