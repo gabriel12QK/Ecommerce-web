@@ -216,9 +216,10 @@ export class RepartidorComponent implements OnInit {
           console.log(err);
         }
       });
-      this.isUpdate = false;
       this.getAllRepartidores();
+      this.isUpdate = false;
       this.idForUpdate = 0;
+      this.formUpdateRepartidor.reset();
     }else {
       
       this.formUpdateRepartidor.markAllAsTouched();
@@ -241,6 +242,7 @@ export class RepartidorComponent implements OnInit {
       this.getAllRepartidores();
       this.isUpdate = false;
       this.idForUpdate = 0;
+      this.formEmail.reset();
     }else{
       this.formEmail.markAllAsTouched();
       alert("Formulario actualizar email inválido.");
@@ -256,6 +258,7 @@ export class RepartidorComponent implements OnInit {
       this.getAllRepartidores();
       this.isUpdate = false;
       this.idForUpdate = 0;
+      this.formPassword.reset();
     }else{
       this.formPassword.markAllAsTouched();
       alert("Formulario actualizar password inválido.");

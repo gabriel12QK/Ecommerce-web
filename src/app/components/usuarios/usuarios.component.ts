@@ -28,7 +28,7 @@ export class UsuariosComponent implements OnInit {
   file: File | any;
   fileSelect: any;
 
-  url: string = "http://127.0.0.1:8000/storage/images/repartidor/"; //esto no se está usando
+  url: string = "http://127.0.0.1:8000/storage/images/persona/"; //esto no se está usando
   
   constructor(private repartidorS: RepartidorService,
     private perfilS: PerfilService,
@@ -76,7 +76,7 @@ password: ['', [Validators.required]]
   getAllUsuarios(){
     this.usuarioS.getAllUsuarios().subscribe({
       next: (res) => {
-        console.log(res);
+        /* console.log(res); */
         this.usuarios = res;
       }, 
       error: (err) => {
@@ -87,6 +87,7 @@ password: ['', [Validators.required]]
 
   agregarUsuario(){
     this.isAdd = true;
+    this.isUpdate = false;
   }
 
   regresar(){
@@ -95,7 +96,13 @@ password: ['', [Validators.required]]
   }
 
   getFile(event: any) {
-    this.file = event.target.files[0];
+    const file1 = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file1);
+    reader.onloadend = () => {
+      this.fileSelect = reader.result;
+    }
+    this.file = (event.target).files[0];
   }
 
   storeUsuario(){
@@ -128,12 +135,17 @@ password: ['', [Validators.required]]
         });
         this.getAllUsuarios();
         this.isAdd = false;
+        this.formUsuario.reset();
+        this.fileSelect = null;
       } else {
         this.formUsuario.markAllAsTouched();
+        alert("Fomulario inválido.");
+        this.getAllUsuarios();
       }
 
     } else {
-      console.error("La imagen es requerida.");
+      alert("La imagen es requerida.");
+      this.formUsuario.markAllAsTouched();
     }
   }
 
@@ -176,6 +188,7 @@ password: ['', [Validators.required]]
     console.log(this.formEmail); */
 
     this.isUpdate = true;
+    this.isAdd = false;
   }
 
   actualizarUsuario(){
@@ -196,11 +209,16 @@ password: ['', [Validators.required]]
           console.log(err);
         }
       });
+      this.getAllUsuarios();
+      this.idForUpdate = 0;
+      this.isUpdate = false;
+      this.formUpdateUsuario.reset();
+    } else {
+      this.formUpdateUsuario.markAllAsTouched();
+      alert("Formulario actualizar repartidor inválido.");
     }
 
-    this.idForUpdate = 0;
-    this.isUpdate = false;
-    this.getAllUsuarios();
+    
   }
 
 
@@ -213,8 +231,11 @@ password: ['', [Validators.required]]
       });
       this.getAllUsuarios();
       this.isUpdate = false;
+      this.idForUpdate = 0;
+      this.formEmail.reset();
     }else{
       this.formEmail.markAllAsTouched();
+      alert("Formulario actualizar email inválido.");
     }
   }
 
@@ -226,8 +247,12 @@ password: ['', [Validators.required]]
       });
       this.getAllUsuarios();
       this.isUpdate = false;
+      this.idForUpdate = 0;
+      this.formPassword.reset();
+
     }else{
       this.formPassword.markAllAsTouched();
+      alert("Formulario actualizar password inválido.");
     }
   }
 
