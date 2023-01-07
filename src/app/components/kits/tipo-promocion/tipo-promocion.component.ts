@@ -37,7 +37,7 @@ export class TipoPromocionComponent implements OnInit {
   getAll(){
     this.tipoPromocionS.getAll().subscribe({
       next: (res) => {
-        console.log(res);
+        /* console.log(res); */
         this.tipos_promocion = res;
       },
       error(err) {
@@ -66,7 +66,7 @@ export class TipoPromocionComponent implements OnInit {
     }
     else{
       this.formTipoPromocion.markAllAsTouched();
-      console.log("Fomulario inválido.");
+      alert("Fomulario inválido.");
     }
   }
   
@@ -93,7 +93,7 @@ export class TipoPromocionComponent implements OnInit {
       this.isUpdate = false;
     }else{
       this.formTipoPromocion.markAllAsTouched();
-      console.log("Fomulario inválido.");
+      alert("Fomulario inválido.");
     }
 
   }
@@ -105,7 +105,7 @@ export class TipoPromocionComponent implements OnInit {
     let tp = this.tipos_promocion.find(e => e.id == id);
 
     if(tp){
-      this.formTipoPromocion.controls['descripcion'].setValue(tp.descripcion)
+      this.formTipoPromocion.controls['descripcion'].setValue(tp?.descripcion)
     }
 
     this.isUpdate = true;

@@ -3,7 +3,7 @@
 <div class="fondo content-wrapper">
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn" (click)="agregar()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus mx-1"></i><b class="mx-2">Agregar Tipo de Promoción</b></a>  
+            <a class="boton-color btn" (click)="agregar()" *ngIf="isAdd === false && isUpdate === false"><i class="fas fa-solid fa-plus mx-1"></i><b class="mx-2">Agregar Tipo de Promoción</b></a>  
         </div>
     </div>
 
@@ -13,14 +13,14 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header  fondo-verde">
-              <h3 class="card-title"><b>Tipos de Promociones</b></h3>
+              <h3 class="card-title"><b>Tipos de Promociones -- Kits</b></h3>
                 
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0" style="height: 350px;">
               <table class="table table-head-fixed text-nowrap">
                 <thead>
-                  <tr>
+                  <tr class="tabla-cent">
                     <th>ID</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
@@ -28,11 +28,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let r of tipos_promocion">
-                    <td>{{r.id}}</td>
-                    <td>{{r.descripcion}}</td>
+                  <tr *ngFor="let r of tipos_promocion" class="tabla-cent">
+                    <td class="align-middle">{{r.id}}</td>
+                    <td class="align-middle">{{r.descripcion}}</td>
                     
-                    <td>
+                    <td class="align-middle">
                       <a class="btn btn-primary" (click)="edit(r.id)">
                         <i class="fas fa-solid fa-pen"></i>
                       </a>
@@ -51,11 +51,13 @@
         </div>
     </div>
 
+    <!-- LOS FOMULARIOS SE PUEDEN OPTIMIZAR CON MENOS CODIGO PERO ME DA PEREZA -->
+
     <!-- Formulario Ingreso-->
 
     <div class="margen-tabla card mt-5" *ngIf="isAdd === true">
       <div class="colores-form card-header">
-        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Agregar un Tipo de Promoción</h3>
+        <h3 class="texto card-title"><i class="fas fa-solid fa-plus me-2"></i> Agregar un Tipo de Promoción</h3>
       </div>
 
       <div class="card-body">
@@ -64,7 +66,7 @@
               <div class="col-12 margen-in">
                 <div class="input-group mb-1">
                   <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-solid fa-user"></i></span>
+                  <span class="input-group-text"><i class="fas fa-solid fa-keyboard"></i></span>
                   </div>
                   <input type="text" class="form-control" placeholder="Descripción"  formControlName="descripcion">
                 </div>
@@ -76,7 +78,7 @@
             </div>
             
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-3">
               <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
               <a class="boton-color boton-editar btn" (click)="store()"><b>Guardar</b></a>
             </div>
@@ -95,7 +97,7 @@
 
     <div class="margen-tabla card mt-5" *ngIf="isUpdate === true">
       <div class="colores-form card-header">
-        <h3 class="texto card-title"><i class="fas fa-solid fa-bicycle me-2"></i> Actualizar un Tipo de Promoción</h3>
+        <h3 class="texto card-title"><i class="fas fa-solid fa-pen me-2"></i> Actualizar un Tipo de Promoción</h3>
       </div>
 
       <div class="card-body">
@@ -116,7 +118,7 @@
               </div>
             </div>
             
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mt-3">
               <a class="boton-color boton-editar btn" (click)="regresar()"><i class="fas fa-solid fa-arrow-left"></i></a>
               <a class="boton-color boton-editar btn" (click)="update()" ><b>Actualizar</b></a>
             </div>
