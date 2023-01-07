@@ -1,3 +1,5 @@
+import { CategoriaComponent } from './components/categoria/categoria.component';
+import { MarcaComponent } from './components/marca/marca.component';
 import { TipoPromocionComponent } from './components/kits/tipo-promocion/tipo-promocion.component';
 import { UsuariosComponent } from './components/usuarios/usuarios.component';
 import { RepartidorComponent } from './components/repartidor/repartidor.component';
@@ -71,11 +73,19 @@ const routes: Routes = [
     path: 'about',
     component:  AboutComponent
   },
+  {
+    path: 'marcas',
+    component: MarcaComponent
+  },
+  {
+    path: 'categorias',
+    component: CategoriaComponent
+  },
   
 
 
 
-  //si van a poner una ruta ponganla arriba de esto
+  //si van a poner una rutas ponganla arriba de esto
   //esta ruta nos lleva hacia una pagina de error
   {
     path: '**',

@@ -151,8 +151,9 @@ export class RepartidorComponent implements OnInit {
 
     } else {
       /* console.error("La imagen es requerida."); */
-      alert("La imagen es requerida.");
       this.formRepartidor.markAllAsTouched();
+      alert("La imagen es requerida.");
+      
     }
   }
 

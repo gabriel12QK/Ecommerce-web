@@ -1,3 +1,4 @@
+import { MarcasInterface } from './../interfaces/Marcas';
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams, HttpHeaders} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
@@ -15,49 +16,23 @@ export class MarcaService {
     return this.http.get<any>(`${environment.urlApi}marca`)
   }
 
-  /* 
+  store(form:MarcasInterface){
+    let data = new FormData();
+    data.append('descripcion', form.descripcion.toString());
+    data.append('imagen', form.imagen);
 
-  Registrarmarca(form:any){
-    console.log(form);
-    
-    debugger
-    return this.http.post<any>(`${environment.urlApi}marca`,form)
-  }
-
-  Guardarmarca()
-  {
- 
- 
-    debugger
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"marca";
-    return this.http.get<any>(dir, {headers:header});
+    return this.http.post<any>(`${environment.urlApi}marca`, data);
   }
 
-  Editarmarca(_id:any):Observable<any>
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"marca/"+_id;
-    return this.http.get<any>(dir,{headers:header});
-  }
-  Borrarmarca(_form:any,_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"marca/"+_id;
-    return this.http.post<any>(dir,_form,{headers:header});
+  update(form:any, id:number){
+    return this.http.put<any>(`${environment.urlApi}marca/${id}`, form)
   }
 
-  Eliminarmarca(_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"marca/"+_id;
-   return this.http.post<any>(dir,_id,{headers:header});
+  delete(id:number){
+    return this.http.delete<any>(`${environment.urlApi}marca/${id}`)
   }
- */
+
+  
 
 }
 

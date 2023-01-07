@@ -1,3 +1,4 @@
+import { CategoriasInterface } from './../interfaces/Categorias';
 import { Injectable } from '@angular/core';
 import {HttpClient,HttpParams, HttpHeaders} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
@@ -15,48 +16,21 @@ export class CategoriaService {
     return this.http.get<any>(`${environment.urlApi}categoria`)
   }
 
-  
+  store(form:CategoriasInterface){
+    let data = new FormData();
+    data.append('descripcion', form.descripcion.toString());
+    data.append('imagen', form.imagen);
 
-  /* Registrarcategoria(form:any){
-    console.log(form);
-    
-    debugger
-    return this.http.post<any>(`${environment.urlApi}categoria`,form)
+    return this.http.post<any>(`${environment.urlApi}categoria`, data);
   }
 
-  Guardarcategoria()
-  {
- 
- 
-    debugger
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"categoria";
-    return this.http.get<any>(dir, {headers:header});
+  update(form:any, id:number){
+    return this.http.put<any>(`${environment.urlApi}categoria/${id}`, form)
   }
 
-  Editarcategoria(_id:any):Observable<any>
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"categoria/"+_id;
-    return this.http.get<any>(dir,{headers:header});
+  delete(id:number){
+    return this.http.delete<any>(`${environment.urlApi}categoria/${id}`)
   }
-  Borrarcategoria(_form:any,_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"categoria/"+_id;
-    return this.http.post<any>(dir,_form,{headers:header});
-  }
-
-  Eliminarcategoria(_id:any)
-  {
-    const header=new HttpHeaders()
-    .set('Authorization',`Bearer ${localStorage.getItem('token')}`);
-    let dir= this.http+"categoria/"+_id;
-   return this.http.post<any>(dir,_id,{headers:header});
-  } */
 
 
 }
