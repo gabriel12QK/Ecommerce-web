@@ -1,139 +1,10 @@
-<!-- <app-header></app-header>
-<app-sidebar></app-sidebar>
 
-<div class="content-wrapper bg-dark">
-    <app-breadcrumbs></app-breadcrumbs>
-    <form [formGroup]="form" class="row m-3 p-4 shadow" (submit)="store()">
-
-        <h2 class=" col-12 fw-bold mb-2 text-uppercase mt-4 ">Promociones</h2>
-
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4">
-                <label class="form-label" for="typeEmailX">Producto</label>
-                <select class="form-select" aria-label="Default select example" formControlName="id_producto">
-                    <option *ngFor="let item of producto" value="{{item.id}}">
-                        {{item.nombre}} 
-                    </option>
-                </select>
-                
-            </div>
-            <div class="alert alert-warning" role="alert"
-            *ngIf="form.get('id_producto')?.touched && form.get('id_producto')?.errors?.['required'] ">
-            Campo Requerido
-            </div>
-        </div>
-
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Stock</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese stock"
-                    formControlName="stock" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('stock')?.touched && form.get('stock')?.errors?.['required'] ">
-                    Campo Requerido
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Descuento</label>
-                <input type="text" class="form-control form-control-md" placeholder="Ingrese descuento"
-                    formControlName="descuento" />
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('descuento')?.touched && form.get('descuento')?.errors?.['required'] ">
-                    Campo Requerido
-                </div>
-            </div>
-        </div>
-        
-
-         <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Fecha de Inicio</label>
-                <input type="date" id="fecha_inicio"  class="form-control form-control-md" placeholder="selecionar fecha"
-                formControlName="fecha_inicio">
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('fecha_inicio')?.touched && form.get('fecha_inicio')?.errors?.['required'] ">
-                    Campo Requerido
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-12 col-md-6">
-            <div class="form-outline form-white mb-4 ">
-                <label class="form-label" for="typeEmailX">Fecha de Fin</label>
-                <input type="date" id="fecha_fin"  class="form-control form-control-md" placeholder="selecionar fecha"
-                formControlName="fecha_fin">                  
-                <div class="alert alert-warning" role="alert"
-                    *ngIf="form.get('fecha_fin')?.touched && form.get('fecha_fin')?.errors?.['required'] ">
-                    Campo Requerido
-                </div>
-            </div>
-        </div> 
-         
-      
-        
-        <div class="col-12 col-md-3">
-            <button *ngIf="!isUpdate" (click)="store()" class="btn btn-primary w-100">Guardar</button>
-            <button *ngIf="isUpdate"  class="btn btn-info w-100">Actualizar</button>
-        </div>
-
-    </form>
-
-    <div class="row m-3 p-4 shadow table-responsive">
-        <table class="table table-dark table-hover p-4">
-            <thead>
-                <tr class="">
-                    <th scope="col">#</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Descuento</th>
-                    <th scope="col">Fecha_inicio</th>
-                    <th scope="col">Fecha_fin</th>
-                    <th scope="col">Id_producto</th>
-                    <th class="text-center" scope="col">Acciones</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr *ngFor="let item of promocion index as i">
-                    <td>{{item.id}}</td>
-                    <td>{{item.stock}}</td>
-                    <td>{{item.descuento}}</td>
-                    <td>{{item.fecha_inicio}}</td>
-                    <td>{{item.fecha_fin}}</td> 
-                    <td>{{item.id_producto}}</td>
-                    
-                    <td>
-                        <div class="d-flex justify-content-evenly align-items">
-                            <button class="btn btn-info me-1" (click)="actualizar(item.id)">Editar
-                            </button>
-
-
-                            <button class="btn btn-danger" (click)="destroy(item.id)">Eliminar
-                            </button>
-                        </div>
-
-
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<app-footer></app-footer>
- -->
-
- <app-header></app-header>
+<app-header></app-header>
 <app-sidebar></app-sidebar>
 <div class="fondo content-wrapper">
     <div class="row margen-tabla">
         <div class="col-12 boton-add">
-            <a class="boton-color btn" (click)="agregarPromocion()" *ngIf="isAdd === false"><i class="fas fa-solid fa-plus"></i> <i class="fas fa-solid fa-bicycle mx-1"></i> <b class="mx-2">Agregar una nueva Promocion</b></a>  <!-- (click)="editarEmail(formEmail.value)" -->
+            <a class="boton-color btn" (click)="agregarPromocion()" *ngIf="isAdd === false && isUpdate === false"><i class="fas fa-solid fa-plus"></i><b class="mx-2">Agregar una nueva oferta</b></a>
         </div>
     </div>
 
@@ -143,7 +14,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header  fondo-verde">
-              <h3 class="card-title"><b>Producto</b></h3>
+              <h3 class="card-title"><i class="fas fa-percent me-2"></i><b>Ofertas</b></h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0" style="height: 400px;">

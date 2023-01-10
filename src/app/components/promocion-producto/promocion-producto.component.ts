@@ -48,16 +48,6 @@ export class PromocionProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiProducto.getProducto().subscribe({
-      next: (res) => {
-        this.producto = res;
-        console.log(this.producto);
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-
     this.getPromocion();
   }
 
@@ -92,9 +82,7 @@ export class PromocionProductoComponent implements OnInit {
       this.isAdd = false;
       this.isUpdate = false;
     }
-  
-  
-   
+
     getPromocion() {
       this.apiPromociones.getPromocion().subscribe({
         next: (res) => {this.promocion = res; 

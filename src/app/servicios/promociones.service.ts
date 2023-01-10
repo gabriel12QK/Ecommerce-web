@@ -14,7 +14,7 @@ export class PromocionesService {
 
   
   getPromocion(){
-    return this.http.get<ResIngresoPromocion []>(`${environment.urlApi}promocion-producto`)
+    return this.http.get<ResIngresoPromocion []>(`${environment.urlApi}indexPromocion `); /* Esta consulta trae todo lo que se nesecita de una info */
   }
 
   
